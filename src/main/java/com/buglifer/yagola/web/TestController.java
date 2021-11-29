@@ -13,6 +13,6 @@ public class TestController {
 
     @GetMapping("/gillog")
     public String gillog() {
-        return "gillog";
+        return "gillog11";
     }
 }
