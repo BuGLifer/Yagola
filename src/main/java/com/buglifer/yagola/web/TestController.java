@@ -10,4 +10,9 @@ public class TestController {
     public String hello() {
         return "testtt";
     }
+
+    @GetMapping("/gillog")
+    public String gillog() {
+        return "gillog11";
+    }
 }
