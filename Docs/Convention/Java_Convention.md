@@ -132,6 +132,8 @@ public void getUserLikeStatus(String userID) {}
 // X
 public void userLikeStatus(String userID) {}
 
+// X
+public void setUserStatus(String userID, booelan isAllowed, String message, int userCount) {}
 ```
 
 ---
@@ -183,8 +185,25 @@ StringBuilder strBuilder = new Builder()
                                     .append("!!!!")
                                     .append("!!!!!!")
                                     .build();
+
 // X
 StringBuilder strBuilder = new Builder().append("!!!!").append("!!!!!!").build();
+
+// O
+List<> userSet = new LinkedList<String>({
+        "Gillog"
+        , "Sora"
+        , "Jeje"
+        , "BJ"
+});
+
+// O
+List<> userSet = new LinkedList<String>({
+        "Gillog",
+        "Sora",
+        "Jeje",
+        "BJ"
+});
 ```
 ---
 
