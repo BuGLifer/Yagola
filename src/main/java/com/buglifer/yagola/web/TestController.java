@@ -1,5 +1,6 @@
 package com.buglifer.yagola.web;
 
+import com.buglifer.yagola.dto.TestDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,12 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @GetMapping("/test")
-    public String hello() {
-        return "testtt";
+    public String hello(TestDTO testDTO) {
+        return testDTO.getTest();
     }
 
     @GetMapping("/gillog")
     public String gillog() {
         return "gillog11";
     }
+
 }
