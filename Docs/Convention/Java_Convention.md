@@ -197,7 +197,7 @@ List<> userSet = new LinkedList<String>({
         , "BJ"
 });
 
-// O
+// X
 List<> userSet = new LinkedList<String>({
         "Gillog",
         "Sora",
