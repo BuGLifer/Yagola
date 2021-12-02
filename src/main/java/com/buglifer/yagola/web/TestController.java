@@ -9,7 +9,7 @@ public class TestController {
 
     @GetMapping("/test")
     public String hello(TestDTO testDTO) {
-        return testDTO.getTest();
+        return "tsss";
     }
 
     @GetMapping("/gillog")
