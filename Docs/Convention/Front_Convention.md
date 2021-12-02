@@ -89,6 +89,7 @@ if (time < 20) {
 ## 객체 규칙
 
 - 객체 이름과 같은 줄에 여는 대괄호를 배치합니다.
+- 복수 요소를 나열할 때는 줄바꿈 이후 `,`와 1칸의 공백을 사용합니다.
 - 각 속성뒤의 콜론(:)과 값 사이에 공백을 사용합니다.
 - 숫자 값이 아닌 문자열 값은 따옴표("")로 묶습니다.
 - 마지막 속성(값)뒤에 쉽표와, 세미콜론을 추가하면 안됩니다.
@@ -98,9 +99,9 @@ if (time < 20) {
 
 ```jsx
 var person = {
-	firstName: "John",
-	lastName: "Doe",
-	age: 50
+	firstName: "John"
+	, lastName: "Doe"
+	, age: 50
 };
 var person = {firstName:"John", lastName:"Doe", age:50};
 ```
