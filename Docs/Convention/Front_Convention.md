@@ -130,7 +130,6 @@ var person = {firstName:"John", lastName:"Doe", age:50};
 ## Performance
 
 - 개발중인 코드의 경우 가독성을 선호합니다.
-- 개발 스크립트를 축소하기위해서 gulp를 사용합니다.
 
 
 ## Modal 에서의 Javascript
