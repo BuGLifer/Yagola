@@ -139,7 +139,7 @@ var person = {firstName:"John", lastName:"Doe", age:50};
   Element Event에 Function을 설정하는 코드들은 callback 함수를 선언하여,
   common.ajaxModal(, , callBack) 형식으로 Modal을 호출할 때 미리 선언한다.
 - Modal안에서 불변하게 사용되는 변수, 객체, 함수들은 script로 분리하여,
-  Modal 호출 jsp에 포함시켜 사용한다.
+  Modal 호출내부에 포함시켜 사용한다.
 
 
 ## 변수 및 함수 선언
