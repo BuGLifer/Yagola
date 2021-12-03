@@ -26,5 +26,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web:2.5.6')
     compile('org.projectlombok:lombok:1.18.22')
     annotationProcessor('org.projectlombok:lombok')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test:2.5.6')
 }
