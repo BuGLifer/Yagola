@@ -1,5 +1,6 @@
 package com.buglifer.yagola.web;
 
+import com.buglifer.yagola.domain.TestDomain;
 import com.buglifer.yagola.dto.TestDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,20 @@ public class HelloController {
 
     @GetMapping("/gillog")
     public String gillog() {
-        return "gillog11";
+        return "gillog";
     }
 
+    @GetMapping("/jpa")
+    public String jpa(TestDTO testDTO) {
+        if(testDTO.getTest() == null) {
+            return TestDomain.builder()
+                    .test("test Domain")
+                    .build()
+                    .toString();
+        }
+        return TestDomain.builder()
+                .test(testDTO.getTest())
+                .build()
+                .toString();
+    }
 }
