@@ -10,3 +10,5 @@ build
 .project
 
 bin
+
+src/main/resources/application.properties
