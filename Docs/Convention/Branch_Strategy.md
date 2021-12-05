@@ -63,7 +63,7 @@ Source Code 병합은 `GitHub`의 `PullRequest`를 활용한다.
 
 개발 완료시에 `GitHub` 에서 `New pull request`를 생성한다.
 
-![img.png](img.png)
+![img.png](https://images.velog.io/images/gillog/post/dce33157-7fd3-42ba-84f3-9346ba76a1a3/img.png)
 
 
 `One a pull request` 창에서 `Tilte` 부분에는 아래 양식대로 제목을 작성한다.
@@ -71,7 +71,7 @@ Source Code 병합은 `GitHub`의 `PullRequest`를 활용한다.
 ```
 [#이슈번호] Complete 개발 기능명 
 ```
-![img_3.png](img_3.png)
+![img_3.png](https://images.velog.io/images/gillog/post/c8d074eb-64a1-410d-b7ba-6784196765f0/img_3.png)
 
 이때 `base:Develope`, `compare:개인 Branch`를 확인한다.
 
@@ -87,7 +87,7 @@ Source Code 병합은 `GitHub`의 `PullRequest`를 활용한다.
 - `Milestone` : `Develope` Milestone 선택
 
 
-![img_2.png](img_2.png)
+![img_2.png](https://images.velog.io/images/gillog/post/73db6b88-99d8-42a9-adb9-be2f4079ece5/img_2.png)
 
 
 작성을 완료한 후 `Create pull request`로 `Pull Request`를 생성한다.
@@ -102,7 +102,7 @@ Source Code 병합은 `GitHub`의 `PullRequest`를 활용한다.
 
 이상이 없을 경우 `Confirm merge`로 `Pull Request`를 병합한다.
 
-![img_4.png](img_4.png)
+![img_4.png](https://images.velog.io/images/gillog/post/0291680e-acbd-4936-bc78-9c0e959f798b/img_4.png)
 
 <br>
 
@@ -110,17 +110,15 @@ Source Code 병합은 `GitHub`의 `PullRequest`를 활용한다.
 
 해당 `PullRequest`를 닫은 후 수정을 요청한다.
 
-![img_5.png](img_5.png)
+![img_5.png](https://images.velog.io/images/gillog/post/81df0aa1-8222-4394-a74f-a59ad2c843ac/img_5.png)
 
 
 <br>
 
-수정 완료 이후 `Pull Request` 요청자는 `Closed` 된 해당 `PullRequest`를
+수정 완료 이후 `Pull Request` 요청자는 
 
-`Repone pull request`로 다시 재 요청한다.
+다시 `PullRequest` 생성 단계를 진행한다.
 
-
-![img_6.png](img_6.png)
 
 ---
 
