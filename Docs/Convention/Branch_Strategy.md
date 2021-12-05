@@ -57,6 +57,71 @@ git push
 
 Source Code 병합은 `GitHub`의 `PullRequest`를 활용한다.
 
+### Pull Request 생성
+
 개발 단계의 `Commit` 들을 `git commit -m "[#이슈번호] 커밋메시지"` 형태로 취합한 후,
 
-개발 완료시에 `GitHub` 에서 `
+개발 완료시에 `GitHub` 에서 `New pull request`를 생성한다.
+
+![img.png](img.png)
+
+
+`One a pull request` 창에서 `Tilte` 부분에는 아래 양식대로 제목을 작성한다.
+
+```
+[#이슈번호] Complete 개발 기능명 
+```
+![img_3.png](img_3.png)
+
+이때 `base:Develope`, `compare:개인 Branch`를 확인한다.
+
+
+해당 완료된 기능 개발 관련 첨부 Comment를 작성한 후,
+
+우 측 `Reviewers`, `Assignees`, `Labels`, `Projects`, `Milestone` 부분도 작성한다.
+
+- `Reviewers` : Review 담당, `Master` 선택
+- `Assignees` : 개발 담당, 개발에 참여한 자신 혹은 추가 인원 선택
+- `Labels` : 해당 기능 개발 관련 `Label` 선택
+- `Projects` : `Develope` Project 선택
+- `Milestone` : `Develope` Milestone 선택
+
+
+![img_2.png](img_2.png)
+
+
+작성을 완료한 후 `Create pull request`로 `Pull Request`를 생성한다.
+
+
+
+<br>
+
+### Pull Request Review
+
+`Review` 담당자는 해당 `Pull Request`의 `Commit`들과 `File chnages`를 살펴보며,
+
+이상이 없을 경우 `Confirm merge`로 `Pull Request`를 병합한다.
+
+![img_4.png](img_4.png)
+
+<br>
+
+수정 필요사항이나, 이상이 발견될 경우 `Review` 담당자는 `Close pull request`로
+
+해당 `PullRequest`를 닫은 후 수정을 요청한다.
+
+![img_5.png](img_5.png)
+
+
+<br>
+
+수정 완료 이후 `Pull Request` 요청자는 `Closed` 된 해당 `PullRequest`를
+
+`Repone pull request`로 다시 재 요청한다.
+
+
+![img_6.png](img_6.png)
+
+---
+
+`Pull Request`가 적용된 후에는 `Source Code` 최신화 단계를 진행한다.
