@@ -10,6 +10,6 @@ public class WebController {
 
     @GetMapping("/main")
     public String getMain() {
-        return "html/Main";
+        return "web/Main";
     }
 }
