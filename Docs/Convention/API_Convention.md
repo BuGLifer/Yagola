@@ -74,10 +74,6 @@ GET /users/1
 
 여기서 **`Resource`는 크게 `Collection`과 `Element`로 나누어 표현**할 수 있다.
 
-|a|b|
-|:--:|:--:|
-|a|b|
-
 |Resource|GET(:id)|POST|PUT(:id)|PATCH(:id)|DELETE(:id)|
 |:--:|:--:|:--:|:--:|:--:|:--:|
 |Collection<br>`http://gillog.com/collection/`|Collection에 속한 Element들의 URI나 목록을 출력|해당 Collection에 속하는 새로운 Element를 생성|전체 Collection을 수정|전체 Collection의 일부 속성을 수정|전체 Collection을 삭제|
