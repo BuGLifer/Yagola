@@ -15,13 +15,13 @@
 
 # REST API
 
-**`REST API`**는 **`자원(Resource)`, `행위(Verb)`, `표현(Representations)` 세 가지로 구성**되어 있다.
+`REST API`는 `자원(Resource)`, `행위(Verb)`, `표현(Representations)` 세 가지로 구성되어 있다.
 
-**`자원(Resource)`은 `URI의 형태`**로,
+`자원(Resource)`은 `URI의 형태`로,
 
-**`행위(Verb)`는 `HTTP의 Method`로 사용**한다.
+`행위(Verb)`는 `HTTP의 Method`로 사용한다.
 
-**`표현(Representations)`는 `HATEOAS`로 사용**한다.
+`표현(Representations)`는 `HATEOAS`로 사용한다.
 
 ---
 
