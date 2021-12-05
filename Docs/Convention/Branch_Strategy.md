@@ -60,12 +60,12 @@ Source Code 병합은 `GitHub`의 `PullRequest`를 활용한다.
 
 개발 단계의 `Commit` 들을 `git commit -m "[#이슈번호] 커밋메시지"` 형태로 취합한 후,
 
-개발 완료시에 `GitHub` 에서 `New pull request`를 생성한다.
+개발 완료시에 `GitHub` 에서 `Branch`에서 자신의 `개인 Branch`의 `New pull request`를 생성한다.
 
 ![img.png](https://images.velog.io/images/gillog/post/dce33157-7fd3-42ba-84f3-9346ba76a1a3/img.png)
 
 
-`One a pull request` 창에서 `Tilte` 부분에는 아래 양식대로 제목을 작성한다.
+`Open a pull request` 창에서 `Tilte` 부분에는 아래 양식대로 제목을 작성한다.
 
 ```
 [#이슈번호] Complete 개발 기능명 
