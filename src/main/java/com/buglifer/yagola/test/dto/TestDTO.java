@@ -1,4 +1,4 @@
-package com.buglifer.yagola.dto;
+package com.buglifer.yagola.test.dto;
 
 import lombok.*;
 

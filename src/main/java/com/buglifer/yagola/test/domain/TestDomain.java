@@ -1,4 +1,4 @@
-package com.buglifer.yagola.domain;
+package com.buglifer.yagola.test.domain;
 
 import lombok.Builder;
 import lombok.Getter;

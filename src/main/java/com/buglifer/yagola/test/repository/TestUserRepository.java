@@ -1,6 +1,6 @@
-package com.buglifer.yagola.repository;
+package com.buglifer.yagola.test.repository;
 
-import com.buglifer.yagola.domain.TestUser;
+import com.buglifer.yagola.test.domain.TestUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,9 +1,9 @@
-package com.buglifer.yagola.web;
+package com.buglifer.yagola.test.controller;
 
-import com.buglifer.yagola.domain.TestDomain;
-import com.buglifer.yagola.domain.TestUser;
-import com.buglifer.yagola.dto.TestDTO;
-import com.buglifer.yagola.repository.TestUserRepository;
+import com.buglifer.yagola.test.domain.TestDomain;
+import com.buglifer.yagola.test.domain.TestUser;
+import com.buglifer.yagola.test.dto.TestDTO;
+import com.buglifer.yagola.test.repository.TestUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
-public class HelloController {
+public class TestController {
 
     private TestUserRepository testUserRepository;
 
