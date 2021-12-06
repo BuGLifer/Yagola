@@ -12,4 +12,5 @@ public class WebController {
     public String getMain() {
         return "web/Main";
     }
+
 }
