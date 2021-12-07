@@ -1,17 +1,15 @@
 package com.buglifer.yagola.common.domain;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
-@Builder
-@EqualsAndHashCode(callSuper = true, of = "id")
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true, of = "seq")
 @Table(name = "TB_USER")
 @Entity
-public class User extends CommonEntity {
+public class UserEntity extends CommonEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
