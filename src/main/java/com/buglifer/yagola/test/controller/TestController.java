@@ -1,5 +1,6 @@
 package com.buglifer.yagola.test.controller;
 
+import com.buglifer.yagola.common.enums.restaurant.Category;
 import com.buglifer.yagola.test.domain.TestDomain;
 import com.buglifer.yagola.test.domain.TestUser;
 import com.buglifer.yagola.test.dto.TestDTO;
@@ -21,7 +22,7 @@ public class TestController {
         String result = "test";
         if(testDTO != null)
             result = testDTO.getTest();
-        return result;
+        return Category.KOREA.getName();
     }
 
     @GetMapping("/gillog")
