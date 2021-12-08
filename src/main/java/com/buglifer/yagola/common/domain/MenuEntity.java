@@ -3,6 +3,7 @@ package com.buglifer.yagola.common.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Builder
 @Getter
@@ -29,6 +30,9 @@ public class MenuEntity extends CommonEntity {
     @JoinColumn(name = "R_SEQ")
     private RestaurantEntity restaurant;
 
+    @OneToMany(mappedBy = "menu")
+    private List<ReviewEntity> reviews;
+
     public void setRestaurant(RestaurantEntity restaurantEntity) {
         if(restaurant != null) {
             restaurant.getMenus().remove(this);
@@ -39,4 +43,10 @@ public class MenuEntity extends CommonEntity {
         }
     }
 
+    public void addReview(ReviewEntity reviewEntity) {
+        reviews.add(reviewEntity);
+        if(reviewEntity.getMenu() != this) {
+            reviewEntity.setMenu(this);
+        }
+    }
 }
