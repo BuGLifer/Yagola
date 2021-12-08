@@ -16,6 +16,6 @@ public class CommonEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     @Column(name = "CREATED_TIME", updatable = false, insertable = false)
-    public Date createdTime;
+    private Date createdTime;
 
 }
