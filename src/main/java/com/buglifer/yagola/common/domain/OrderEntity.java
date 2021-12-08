@@ -1,10 +1,7 @@
 package com.buglifer.yagola.common.domain;
 
 import com.buglifer.yagola.common.enums.order.Status;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -13,7 +10,8 @@ import java.util.List;
 
 @Builder
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true, of = "seq")
 @Table(name = "TB_ORDER")
 @Entity

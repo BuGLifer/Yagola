@@ -8,6 +8,7 @@ import java.util.List;
 @Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true, of = "seq")
 @Entity
 public class MenuEntity extends CommonEntity {

@@ -6,9 +6,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
 @Table(name = "TB_RESTAURANT")
 @EqualsAndHashCode(callSuper = true, of = "seq")
 @Entity

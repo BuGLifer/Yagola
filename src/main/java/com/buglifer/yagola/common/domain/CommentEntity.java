@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true, of = "seq")
 @Entity
 public class CommentEntity extends CommonEntity {
