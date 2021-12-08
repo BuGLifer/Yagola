@@ -42,14 +42,14 @@ public class RestaurantEntity extends CommonEntity {
     private List<MenuEntity> menus;
 
     public void addOrder(OrderEntity orderEntity) {
-        this.orders.add(orderEntity);
+        orders.add(orderEntity);
         if(orderEntity.getRestaurant() != this) {
             orderEntity.setRestaurant(this);
         }
     }
 
     public void addMenu(MenuEntity menuEntity) {
-        this.menus.add(menuEntity);
+        menus.add(menuEntity);
         if(menuEntity.getRestaurant() != this) {
             menuEntity.setRestaurant(this);
         }

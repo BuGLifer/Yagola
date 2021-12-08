@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @Getter
@@ -46,6 +47,9 @@ public class OrderEntity extends CommonEntity {
     @JoinColumn(name = "R_SEQ")
     private RestaurantEntity restaurant;
 
+    @OneToMany(mappedBy = "order")
+    private List<CommentEntity> comments;
+
     public void setRestaurant(RestaurantEntity restaurantEntity) {
         if(restaurant != null) {
             restaurant.getOrders().remove(this);
@@ -53,6 +57,13 @@ public class OrderEntity extends CommonEntity {
         restaurant = restaurantEntity;
         if(!restaurant.getOrders().contains(this)) {
             restaurant.getOrders().add(this);
+        }
+    }
+
+    public void addComment(CommentEntity commentEntity) {
+        comments.add(commentEntity);
+        if(commentEntity.getOrder() != this) {
+            commentEntity.setOrder(this);
         }
     }
 }
