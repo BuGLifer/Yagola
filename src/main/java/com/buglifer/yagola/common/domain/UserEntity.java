@@ -3,6 +3,7 @@ package com.buglifer.yagola.common.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -22,9 +23,19 @@ public class UserEntity extends CommonEntity {
     @Column(name = "ip")
     private String ip;
 
+    @OneToMany(mappedBy = "user")
+    private List<CommentEntity> comments;
+
     @Builder(builderMethodName = "initUser")
     public UserEntity(String nickName, String ip) {
         this.nickName = nickName;
         this.ip = ip;
+    }
+
+    public void addComment(CommentEntity commentEntity) {
+        comments.add(commentEntity);
+        if(commentEntity.getUser() != this) {
+            commentEntity.setUser(this);
+        }
     }
 }
