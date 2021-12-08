@@ -1,15 +1,14 @@
 package com.buglifer.yagola.common.domain;
 
 import com.buglifer.yagola.common.enums.restaurant.Category;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Builder
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "TB_RESTAURANT")
 @EqualsAndHashCode(callSuper = true, of = "seq")
 @Entity
@@ -39,10 +38,20 @@ public class RestaurantEntity extends CommonEntity {
     @OneToMany(mappedBy = "restaurant")
     private List<OrderEntity> orders;
 
+    @OneToMany(mappedBy = "restaurant")
+    private List<MenuEntity> menus;
+
     public void addOrder(OrderEntity orderEntity) {
         this.orders.add(orderEntity);
         if(orderEntity.getRestaurant() != this) {
             orderEntity.setRestaurant(this);
+        }
+    }
+
+    public void addMenu(MenuEntity menuEntity) {
+        this.menus.add(menuEntity);
+        if(menuEntity.getRestaurant() != this) {
+            menuEntity.setRestaurant(this);
         }
     }
 }

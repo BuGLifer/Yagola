@@ -1,6 +1,7 @@
 package com.buglifer.yagola.common.domain;
 
 import com.buglifer.yagola.common.enums.order.Status;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
+@Builder
 @Getter
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true, of = "seq")
@@ -45,12 +47,12 @@ public class OrderEntity extends CommonEntity {
     private RestaurantEntity restaurant;
 
     public void setRestaurant(RestaurantEntity restaurantEntity) {
-        if(this.restaurant != null) {
-            this.restaurant.getOrders().remove(this);
+        if(restaurant != null) {
+            restaurant.getOrders().remove(this);
         }
-        this.restaurant = restaurantEntity;
-        if(!restaurantEntity.getOrders().contains(this)) {
-            restaurantEntity.getOrders().add(this);
+        restaurant = restaurantEntity;
+        if(!restaurant.getOrders().contains(this)) {
+            restaurant.getOrders().add(this);
         }
     }
 }
