@@ -29,6 +29,9 @@ public class ReviewEntity extends CommonEntity {
     @JoinColumn(name = "M_SEQ")
     private MenuEntity menu;
 
+    @OneToOne(mappedBy = "review")
+    private UserOrderEntity userOrder;
+
     public void setMenu(MenuEntity menuEntity) {
         if(menu != null) {
             menu.getReviews().remove(this);

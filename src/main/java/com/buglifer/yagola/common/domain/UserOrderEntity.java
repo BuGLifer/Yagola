@@ -31,7 +31,7 @@ public class UserOrderEntity extends CommonEntity {
     @JoinColumn(name = "M_SEQ")
     private MenuEntity menu;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RV_SEQ")
     private ReviewEntity review;
 
