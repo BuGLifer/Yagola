@@ -26,6 +26,9 @@ public class UserEntity extends CommonEntity {
     @OneToMany(mappedBy = "user")
     private List<CommentEntity> comments;
 
+    @OneToMany(mappedBy = "user")
+    private List<UserOrderEntity> userOrders;
+
     @Builder(builderMethodName = "initUser")
     public UserEntity(String nickName, String ip) {
         this.nickName = nickName;
@@ -36,6 +39,13 @@ public class UserEntity extends CommonEntity {
         comments.add(commentEntity);
         if(commentEntity.getUser() != this) {
             commentEntity.setUser(this);
+        }
+    }
+
+    public void addUserOrder(UserOrderEntity userOrderEntity) {
+        userOrders.add(userOrderEntity);
+        if(userOrderEntity.getUser() != this) {
+            userOrderEntity.setUser(this);
         }
     }
 }

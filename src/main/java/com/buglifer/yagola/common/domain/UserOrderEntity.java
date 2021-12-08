@@ -35,4 +35,10 @@ public class UserOrderEntity extends CommonEntity {
     @JoinColumn(name = "RV_SEQ")
     private ReviewEntity review;
 
+    public void setUser(UserEntity userEntity) {
+        user = userEntity;
+        if(!user.getUserOrders().contains(this)) {
+            user.getUserOrders().add(this);
+        }
+    }
 }
