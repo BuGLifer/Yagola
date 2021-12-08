@@ -50,6 +50,9 @@ public class OrderEntity extends CommonEntity {
     @OneToMany(mappedBy = "order")
     private List<CommentEntity> comments;
 
+    @OneToMany(mappedBy = "order")
+    private List<UserOrderEntity> userOrders;
+
     public void setRestaurant(RestaurantEntity restaurantEntity) {
         if(restaurant != null) {
             restaurant.getOrders().remove(this);
@@ -64,6 +67,13 @@ public class OrderEntity extends CommonEntity {
         comments.add(commentEntity);
         if(commentEntity.getOrder() != this) {
             commentEntity.setOrder(this);
+        }
+    }
+
+    public void addUser(UserOrderEntity userOrderEntity) {
+        userOrders.add(userOrderEntity);
+        if(userOrderEntity.getOrder() != this) {
+            userOrderEntity.setOrder(this);
         }
     }
 }
