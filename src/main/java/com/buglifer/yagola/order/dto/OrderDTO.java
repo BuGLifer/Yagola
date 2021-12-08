@@ -1,15 +1,18 @@
 package com.buglifer.yagola.order.dto;
 
 import com.buglifer.yagola.common.domain.OrderEntity;
+import com.buglifer.yagola.common.domain.RestaurantEntity;
 import com.buglifer.yagola.common.dto.CommonDTO;
 import com.buglifer.yagola.common.enums.order.Status;
 import com.buglifer.yagola.restaurant.dto.RestaurantDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Date;
 
+@ToString
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,12 +34,15 @@ public class OrderDTO extends CommonDTO {
         offlineTime = orderEntity.getOfflineTime();
         orderTime = orderEntity.getOrderTime();
         arrivalTime = orderEntity.getArrivalTime();
-        if(restaurant != null) {
-            restaurant.getOrders().remove(this);
-        }
-        restaurant = new RestaurantDTO(orderEntity.getRestaurant());
-        if(!restaurant.getOrders().contains(this)) {
-            restaurant.setOrder(this);
-        }
+        RestaurantEntity restaurantEntity = orderEntity.getRestaurant();
+        restaurant =
+                new RestaurantDTO()
+                        .builder()
+                        .apiID(restaurantEntity.getApiID())
+                        .name(restaurantEntity.getName())
+                        .tel(restaurantEntity.getTel())
+                        .imgLink(restaurantEntity.getImgLink())
+                        .category(restaurantEntity.getCategory())
+                        .build();
     }
 }
