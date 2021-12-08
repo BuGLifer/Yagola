@@ -6,9 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
+@Table(name = "TB_RESTAURANT")
 @EqualsAndHashCode(callSuper = true, of = "seq")
 @Entity
 public class RestaurantEntity extends CommonEntity {
@@ -34,4 +36,13 @@ public class RestaurantEntity extends CommonEntity {
     @Column(name = "CATEGORY")
     private Category category;
 
+    @OneToMany(mappedBy = "restaurant")
+    private List<OrderEntity> orders;
+
+    public void setOrder(OrderEntity orderEntity) {
+        this.orders.add(orderEntity);
+        if(orderEntity.getRestaurant() != this) {
+            orderEntity.setRestaurant(this);
+        }
+    }
 }
