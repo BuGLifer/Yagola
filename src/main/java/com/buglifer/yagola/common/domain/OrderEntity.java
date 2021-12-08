@@ -50,7 +50,7 @@ public class OrderEntity extends CommonEntity {
         }
         this.restaurant = restaurantEntity;
         if(!restaurantEntity.getOrders().contains(this)) {
-            restaurantEntity.setOrder(this);
+            restaurantEntity.getOrders().add(this);
         }
     }
 }

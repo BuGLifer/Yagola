@@ -39,7 +39,7 @@ public class RestaurantEntity extends CommonEntity {
     @OneToMany(mappedBy = "restaurant")
     private List<OrderEntity> orders;
 
-    public void setOrder(OrderEntity orderEntity) {
+    public void addOrder(OrderEntity orderEntity) {
         this.orders.add(orderEntity);
         if(orderEntity.getRestaurant() != this) {
             orderEntity.setRestaurant(this);
