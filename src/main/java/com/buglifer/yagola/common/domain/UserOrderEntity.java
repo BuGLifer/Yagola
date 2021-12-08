@@ -45,7 +45,14 @@ public class UserOrderEntity extends CommonEntity {
     public void setOrder(OrderEntity orderEntity) {
         order = orderEntity;
         if(!order.getUserOrders().contains(this)) {
-            user.getUserOrders().add(this);
+            order.getUserOrders().add(this);
+        }
+    }
+
+    public void setMenu(MenuEntity menuEntity) {
+        menu = menuEntity;
+        if(!menu.getUserOrders().contains(this)) {
+            menu.getUserOrders().add(this);
         }
     }
 }

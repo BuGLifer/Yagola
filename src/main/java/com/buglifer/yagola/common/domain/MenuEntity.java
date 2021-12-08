@@ -33,6 +33,9 @@ public class MenuEntity extends CommonEntity {
     @OneToMany(mappedBy = "menu")
     private List<ReviewEntity> reviews;
 
+    @OneToMany(mappedBy = "menu")
+    private List<UserOrderEntity> userOrders;
+
     public void setRestaurant(RestaurantEntity restaurantEntity) {
         if(restaurant != null) {
             restaurant.getMenus().remove(this);
@@ -47,6 +50,13 @@ public class MenuEntity extends CommonEntity {
         reviews.add(reviewEntity);
         if(reviewEntity.getMenu() != this) {
             reviewEntity.setMenu(this);
+        }
+    }
+
+    public void addUserOrder(UserOrderEntity userOrderEntity) {
+        userOrders.add(userOrderEntity);
+        if(userOrderEntity.getMenu() != this) {
+            userOrderEntity.setMenu(this);
         }
     }
 }
