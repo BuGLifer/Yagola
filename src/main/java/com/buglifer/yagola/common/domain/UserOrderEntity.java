@@ -9,6 +9,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true, of = "seq")
+@Table(name = "TB_USER_ORDER")
 @Entity
 public class UserOrderEntity extends CommonEntity {
 
