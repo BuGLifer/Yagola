@@ -1,13 +1,11 @@
 package com.buglifer.yagola.common.domain;
 
+import com.buglifer.yagola.comment.dto.CommentDTO;
 import lombok.*;
 
 import javax.persistence.*;
 
-@Builder
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true, of = "seq")
 @Table(name = "TB_COMMENT")
 @Entity
@@ -52,6 +50,29 @@ public class CommentEntity extends CommonEntity {
         order = orderEntity;
         if(!order.getComments().contains(this)) {
             order.getComments().add(this);
+        }
+    }
+
+    @Builder(builderMethodName = "initComment")
+    public CommentEntity(CommentDTO commentDTO) {
+        seq = commentDTO.getSeq();
+        comment = commentDTO.getComment();
+        view = commentDTO.isView();
+        if(commentDTO.getUser() != null) {
+            user = UserEntity
+                    .initUser()
+                    .seq(commentDTO.getUser().getSeq())
+                    .build();
+
+        }
+        if(commentDTO.getOrder() != null) {
+            order = OrderEntity
+                    .initOrder()
+                    .seq(commentDTO.getOrder().getSeq())
+                    .build();
+        }
+        if(commentDTO.getParentComment() != null) {
+            pSeq = commentDTO.getParentComment().getSeq();
         }
     }
 }

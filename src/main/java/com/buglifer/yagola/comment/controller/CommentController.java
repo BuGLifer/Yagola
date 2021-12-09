@@ -4,9 +4,11 @@ import com.buglifer.yagola.comment.dto.CommentDTO;
 import com.buglifer.yagola.comment.service.CommentService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("comments")
 @RestController
@@ -19,4 +21,8 @@ public class CommentController {
         return ResponseEntity.ok().body(commentService.getCommentDTO(seq));
     }
 
+    @PostMapping("")
+    public ResponseEntity<CommentDTO> postCommentDTO(@RequestBody CommentDTO commentDTO) {
+        return ResponseEntity.ok().body(commentService.saveComment(commentDTO));
+    }
 }

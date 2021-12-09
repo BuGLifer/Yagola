@@ -21,4 +21,13 @@ public class CommentService {
         }
         return new CommentDTO();
     }
+
+    public CommentDTO saveComment(CommentDTO commentDTO) {
+        CommentEntity commentEntity = CommentEntity
+                .initComment()
+                .commentDTO(commentDTO)
+                .build();
+        commentRepository.save(commentEntity);
+        return new CommentDTO(commentEntity);
+    }
 }

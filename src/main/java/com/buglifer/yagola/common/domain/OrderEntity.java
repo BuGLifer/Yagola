@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
@@ -73,5 +72,10 @@ public class OrderEntity extends CommonEntity {
         if(userOrderEntity.getOrder() != this) {
             userOrderEntity.setOrder(this);
         }
+    }
+
+    @Builder(builderMethodName = "initOrder")
+    public OrderEntity(long seq) {
+        this.seq = seq;
     }
 }

@@ -5,14 +5,11 @@ import com.buglifer.yagola.common.domain.RestaurantEntity;
 import com.buglifer.yagola.common.dto.CommonDTO;
 import com.buglifer.yagola.common.enums.order.Status;
 import com.buglifer.yagola.restaurant.dto.RestaurantDTO;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
 
-@ToString
+@ToString(callSuper = true)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -44,5 +41,10 @@ public class OrderDTO extends CommonDTO {
                         .imgLink(restaurantEntity.getImgLink())
                         .category(restaurantEntity.getCategory())
                         .build();
+    }
+
+    @Builder(builderMethodName = "initOrder")
+    public OrderDTO(long seq) {
+        setSeq(seq);
     }
 }

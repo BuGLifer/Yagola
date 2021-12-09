@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor()
 @EqualsAndHashCode(callSuper = true, of = "seq")
 @Table(name = "TB_USER")
 @Entity
@@ -29,10 +29,21 @@ public class UserEntity extends CommonEntity {
     @OneToMany(mappedBy = "user")
     private List<UserOrderEntity> userOrders;
 
-    @Builder(builderMethodName = "initUser")
+    @Builder(
+            builderClassName = "register"
+            , builderMethodName = "registerUser"
+    )
     public UserEntity(String nickName, String ip) {
         this.nickName = nickName;
         this.ip = ip;
+    }
+
+    @Builder(
+            builderClassName = "init"
+            , builderMethodName = "initUser"
+    )
+    public UserEntity(long seq) {
+        this.seq = seq;
     }
 
     public void addComment(CommentEntity commentEntity) {
