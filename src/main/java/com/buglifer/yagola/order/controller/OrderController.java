@@ -21,7 +21,7 @@ public class OrderController {
     @GetMapping("{seq}")
     public OrderDTO getOrder(@PathVariable(name = "seq", required = true) long seq) {
         Optional<OrderEntity> optionalOrderEntity = orderRepository.findById(seq);
-        if(optionalOrderEntity.isEmpty()) {
+        if(!optionalOrderEntity.isPresent()) {
             return null;
         }
         return new OrderDTO(optionalOrderEntity.get());
