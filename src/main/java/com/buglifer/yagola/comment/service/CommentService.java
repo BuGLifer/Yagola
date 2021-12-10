@@ -25,7 +25,7 @@ public class CommentService {
     public CommentDTO saveComment(CommentDTO commentDTO) {
         CommentEntity commentEntity = CommentEntity
                 .initComment()
-                .commentDTO(commentDTO)
+                .dto(commentDTO)
                 .build();
         commentRepository.save(commentEntity);
         return new CommentDTO(commentEntity);

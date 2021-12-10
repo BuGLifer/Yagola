@@ -54,25 +54,25 @@ public class CommentEntity extends CommonEntity {
     }
 
     @Builder(builderMethodName = "initComment")
-    public CommentEntity(CommentDTO commentDTO) {
-        seq = commentDTO.getSeq();
-        comment = commentDTO.getComment();
-        view = commentDTO.isView();
-        if(commentDTO.getUser() != null) {
+    public CommentEntity(CommentDTO dto) {
+        seq = dto.getSeq();
+        comment = dto.getComment();
+        view = dto.isView();
+        if(dto.getUser() != null) {
             user = UserEntity
                     .initUser()
-                    .seq(commentDTO.getUser().getSeq())
+                    .seq(dto.getUser().getSeq())
                     .build();
 
         }
-        if(commentDTO.getOrder() != null) {
+        if(dto.getOrder() != null) {
             order = OrderEntity
                     .initOrder()
-                    .seq(commentDTO.getOrder().getSeq())
+                    .seq(dto.getOrder().getSeq())
                     .build();
         }
-        if(commentDTO.getParentComment() != null) {
-            pSeq = commentDTO.getParentComment().getSeq();
+        if(dto.getParentComment() != null) {
+            pSeq = dto.getParentComment().getSeq();
         }
     }
 }
