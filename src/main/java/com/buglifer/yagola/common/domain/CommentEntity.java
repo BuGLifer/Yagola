@@ -63,7 +63,6 @@ public class CommentEntity extends CommonEntity {
                     .initUser()
                     .seq(commentDTO.getUser().getSeq())
                     .build();
-
         }
         if(commentDTO.getOrder() != null) {
             order = OrderEntity
