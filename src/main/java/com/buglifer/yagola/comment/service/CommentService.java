@@ -14,7 +14,7 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
 
-    public CommentDTO getCommentDTO(long seq) {
+    public CommentDTO findCommentBySeq(long seq) {
         Optional<CommentEntity> optionalCommentEntity = commentRepository.findById(seq);
         if(optionalCommentEntity.isPresent()) {
             return new CommentDTO(optionalCommentEntity.get());

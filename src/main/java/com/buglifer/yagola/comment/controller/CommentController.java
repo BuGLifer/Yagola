@@ -18,7 +18,7 @@ public class CommentController {
 
     @GetMapping("{seq}")
     public ResponseEntity<CommentDTO> getCommentBySeq(@PathVariable(name = "seq") long seq) {
-        return ResponseEntity.ok().body(commentService.getCommentDTO(seq));
+        return ResponseEntity.ok().body(commentService.findCommentBySeq(seq));
     }
 
     @PostMapping("")
