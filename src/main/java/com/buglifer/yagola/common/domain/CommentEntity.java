@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true, of = "seq")
 @Table(name = "TB_COMMENT")
 @Entity
