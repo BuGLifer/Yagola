@@ -7,10 +7,7 @@ import com.buglifer.yagola.restaurant.service.RestaurantService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
 import java.util.Optional;
@@ -24,7 +21,11 @@ public class RestaurantController {
 
     @GetMapping("{seq}")
     public ResponseEntity<RestaurantDTO> getRestaurant(@PathVariable(name = "seq") long seq) {
-        return ResponseEntity.ok().body(restaurantService.getRestaurant(seq));
+        return ResponseEntity.ok().body(restaurantService.findRestaurantBySeq(seq));
+    }
 
+    @PostMapping("")
+    public ResponseEntity<RestaurantDTO> postRestaurant(@RequestBody RestaurantDTO restaurantDTO) {
+        return ResponseEntity.ok().body(restaurantService.saveRestaurant(restaurantDTO));
     }
 }

@@ -14,7 +14,7 @@ public class RestaurantService {
 
     private final RestaurantRepository restaurantRepository;
 
-    public RestaurantDTO getRestaurant(long seq) {
+    public RestaurantDTO findRestaurantBySeq(long seq) {
         RestaurantDTO restaurantDTO = new RestaurantDTO();
         Optional<RestaurantEntity> optionalRestaurantEntity = restaurantRepository.findById(seq);
         if (!optionalRestaurantEntity.isPresent()) {
@@ -26,4 +26,15 @@ public class RestaurantService {
                 .build();
     }
 
+    public RestaurantDTO saveRestaurant(RestaurantDTO restaurantDTO) {
+        RestaurantEntity restaurantEntity = RestaurantEntity
+                .initRestaurant()
+                .dto(restaurantDTO)
+                .build();
+        restaurantRepository.save(restaurantEntity);
+        return RestaurantDTO
+                .fromEntity()
+                .entity(restaurantEntity)
+                .build();
+    }
 }
