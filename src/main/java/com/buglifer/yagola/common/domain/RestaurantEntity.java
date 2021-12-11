@@ -55,7 +55,10 @@ public class RestaurantEntity extends CommonEntity {
         }
     }
 
-    @Builder(builderMethodName = "initRestaurant")
+    @Builder(
+            builderClassName = "init"
+            , builderMethodName = "initRestaurant"
+    )
     public RestaurantEntity(RestaurantDTO dto) {
         seq = dto.getSeq();
         name = dto.getName();
@@ -64,4 +67,10 @@ public class RestaurantEntity extends CommonEntity {
         imgLink = dto.getImgLink();
         category = dto.getCategory();
     }
+
+    @Builder(
+            builderClassName = "initRestaurantMenu"
+            , builderMethodName = "initRestMenu"
+    )
+    public RestaurantEntity(long seq) { this.seq = seq; }
 }
