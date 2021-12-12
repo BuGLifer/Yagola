@@ -69,8 +69,8 @@ public class RestaurantEntity extends CommonEntity {
     }
 
     @Builder(
-            builderClassName = "initRestaurantMenu"
-            , builderMethodName = "initRestMenu"
+            builderClassName = "initRestSeq"
+            , builderMethodName = "initRestSeq"
     )
     public RestaurantEntity(long seq) { this.seq = seq; }
 }

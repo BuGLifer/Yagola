@@ -25,13 +25,13 @@ public class MenuDTO extends CommentDTO {
         setPrice(menuEntity.getPrice());
         setImgLink(menuEntity.getImgLink());
         restaurant = RestaurantDTO
-                .initRestaurant()
+                .initRestDTOSeq()
                 .seq(menuEntity.getRestaurant().getSeq())
                 .build();
     }
 
     @Builder(
-            builderClassName = "dto"
+            builderClassName = "initMenu"
             , builderMethodName = "initMenu"
     )
     public MenuDTO(long seq) { setSeq(seq); }

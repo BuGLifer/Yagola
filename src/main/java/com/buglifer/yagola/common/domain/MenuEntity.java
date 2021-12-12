@@ -69,7 +69,7 @@ public class MenuEntity extends CommonEntity {
         imgLink = dto.getImgLink();
         if (dto.getRestaurant() != null) {
             restaurant = RestaurantEntity
-                    .initRestMenu()
+                    .initRestSeq()
                     .seq(dto.getRestaurant().getSeq())
                     .build();
         }
