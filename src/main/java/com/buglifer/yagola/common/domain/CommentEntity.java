@@ -54,8 +54,11 @@ public class CommentEntity extends CommonEntity {
         }
     }
 
-    @Builder(builderMethodName = "initComment")
-    public CommentEntity(CommentDTO dto) {
+    @Builder(
+            builderClassName = "init"
+            , builderMethodName = "initComment"
+    )
+    private CommentEntity(CommentDTO dto) {
         seq = dto.getSeq();
         comment = dto.getComment();
         view = dto.isView();
