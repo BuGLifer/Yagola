@@ -33,7 +33,7 @@ public class CommentService {
         if(optionalCommentEntity.isPresent()) {
             return new CommentDTO(optionalCommentEntity.get());
         }
-        return new CommentDTO();
+        return CommentDTO.initComment().build();
     }
 
     public CommentDTO saveComment(CommentDTO commentDTO) {
