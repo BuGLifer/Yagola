@@ -22,7 +22,7 @@ public class CommentDTO extends PostDTO {
             builderClassName = "entity"
             , builderMethodName = "fromEntity"
     )
-    public CommentDTO(CommentEntity entity) {
+    private CommentDTO(CommentEntity entity) {
         setSeq(entity.getSeq());
         parentComment = CommentDTO
                 .initComment()
@@ -39,7 +39,7 @@ public class CommentDTO extends PostDTO {
             builderClassName = "dto"
             , builderMethodName = "initComment"
     )
-    public CommentDTO(long seq) {
+    private CommentDTO(long seq) {
         setSeq(seq);
     }
 
