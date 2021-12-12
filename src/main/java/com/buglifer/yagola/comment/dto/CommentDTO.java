@@ -18,20 +18,27 @@ public class CommentDTO extends PostDTO {
     private UserDTO user;
     private OrderDTO order;
 
-    public CommentDTO(CommentEntity commentEntity) {
-        setSeq(commentEntity.getSeq());
+    @Builder(
+            builderClassName = "entity"
+            , builderMethodName = "fromEntity"
+    )
+    public CommentDTO(CommentEntity entity) {
+        setSeq(entity.getSeq());
         parentComment = CommentDTO
                 .initComment()
-                .seq(commentEntity.getPSeq())
+                .seq(entity.getPSeq())
                 .build();
-        setView(commentEntity.isView());
-        setCreatedTime(commentEntity.getCreatedTime());
-        if(commentEntity.getComment() != null) {
-            setComment(commentEntity.getComment());
+        setView(entity.isView());
+        setCreatedTime(entity.getCreatedTime());
+        if(entity.getComment() != null) {
+            setComment(entity.getComment());
         }
     }
 
-    @Builder(builderMethodName = "initComment")
+    @Builder(
+            builderClassName = "dto"
+            , builderMethodName = "initComment"
+    )
     public CommentDTO(long seq) {
         setSeq(seq);
     }

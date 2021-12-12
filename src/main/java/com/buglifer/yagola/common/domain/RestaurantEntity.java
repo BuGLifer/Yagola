@@ -1,15 +1,14 @@
 package com.buglifer.yagola.common.domain;
 
 import com.buglifer.yagola.common.enums.restaurant.Category;
+import com.buglifer.yagola.restaurant.dto.RestaurantDTO;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
-@Builder
+@NoArgsConstructor
 @Table(name = "TB_RESTAURANT")
 @EqualsAndHashCode(callSuper = true, of = "seq")
 @Entity
@@ -55,4 +54,23 @@ public class RestaurantEntity extends CommonEntity {
             menuEntity.setRestaurant(this);
         }
     }
+
+    @Builder(
+            builderClassName = "init"
+            , builderMethodName = "initRestaurant"
+    )
+    public RestaurantEntity(RestaurantDTO dto) {
+        seq = dto.getSeq();
+        name = dto.getName();
+        apiID = dto.getApiID();
+        tel = dto.getTel();
+        imgLink = dto.getImgLink();
+        category = dto.getCategory();
+    }
+
+    @Builder(
+            builderClassName = "initRestaurantMenu"
+            , builderMethodName = "initRestMenu"
+    )
+    public RestaurantEntity(long seq) { this.seq = seq; }
 }
