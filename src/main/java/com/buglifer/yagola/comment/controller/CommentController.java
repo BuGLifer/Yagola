@@ -33,4 +33,9 @@ public class CommentController {
         return ResponseEntity.ok().body(commentService.saveComment(commentDTO));
     }
 
+    @PatchMapping("{seq}")
+    public ResponseEntity<CommentDTO> patchComment(@PathVariable(name = "seq") long seq, @RequestBody CommentDTO commentDTO) {
+        if(commentDTO.getSeq() != seq) commentDTO.setSeq(seq);
+        return ResponseEntity.ok().body(commentService.updateComment(commentDTO));
+    }
 }
