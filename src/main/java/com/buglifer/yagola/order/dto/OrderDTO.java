@@ -4,7 +4,9 @@ import com.buglifer.yagola.common.domain.OrderEntity;
 import com.buglifer.yagola.common.domain.RestaurantEntity;
 import com.buglifer.yagola.common.dto.CommonDTO;
 import com.buglifer.yagola.common.enums.order.Status;
+import com.buglifer.yagola.menu.dto.MenuDTO;
 import com.buglifer.yagola.restaurant.dto.RestaurantDTO;
+import com.buglifer.yagola.user.dto.UserDTO;
 import lombok.*;
 
 import java.util.Date;
@@ -20,6 +22,9 @@ public class OrderDTO extends CommonDTO {
     private Date orderTime;
     private Date arrivalTime;
     private RestaurantDTO restaurant;
+    private UserDTO user;
+    private MenuDTO menu;
+
 
     public OrderDTO(OrderEntity orderEntity) {
         if(orderEntity == null) {
@@ -35,6 +40,7 @@ public class OrderDTO extends CommonDTO {
         restaurant =
                 new RestaurantDTO()
                         .builder()
+                        .seq(restaurantEntity.getSeq())
                         .apiID(restaurantEntity.getApiID())
                         .name(restaurantEntity.getName())
                         .tel(restaurantEntity.getTel())
@@ -43,7 +49,10 @@ public class OrderDTO extends CommonDTO {
                         .build();
     }
 
-    @Builder(builderMethodName = "initOrder")
+    @Builder(
+            builderClassName = "initOrder"
+            , builderMethodName = "initOrder"
+    )
     public OrderDTO(long seq) {
         setSeq(seq);
     }

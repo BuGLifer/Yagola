@@ -23,7 +23,10 @@ public class RestaurantDTO extends CommonDTO {
     private Category category;
     private List<OrderDTO> orders;
 
-    @Builder(builderMethodName = "fromEntity")
+    @Builder(
+            builderClassName = "entity"
+            , builderMethodName = "fromEntity"
+    )
     public RestaurantDTO(RestaurantEntity entity) {
         if(entity == null) {
             return;
@@ -39,7 +42,8 @@ public class RestaurantDTO extends CommonDTO {
     }
 
     @Builder
-    public RestaurantDTO(String name, String apiID, String tel, String imgLink, Category category) {
+    public RestaurantDTO(long seq, String name, String apiID, String tel, String imgLink, Category category) {
+        setSeq(seq);
         this.name = name;
         this.apiID = apiID;
         this.tel = tel;
@@ -54,5 +58,9 @@ public class RestaurantDTO extends CommonDTO {
         orders.add(orderDTO);
     }
 
-
+    @Builder(
+            builderClassName = "initRestDTOSeq"
+            , builderMethodName = "initRestDTOSeq"
+    )
+    public RestaurantDTO(long seq) { setSeq(seq); }
 }

@@ -7,6 +7,7 @@ import com.buglifer.yagola.test.dto.TestDTO;
 import com.buglifer.yagola.test.repository.TestUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
@@ -25,9 +26,9 @@ public class TestController {
         return Category.KOREA.getName();
     }
 
-    @GetMapping("/gillog")
-    public String gillog() {
-        return "gillog";
+    @GetMapping("/gillog/{id}")
+    public String gillog(@PathVariable("id") int id) {
+        return "gillog"+id;
     }
 
     @GetMapping("/jpa")

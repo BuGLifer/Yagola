@@ -1,29 +1,33 @@
 package com.buglifer.yagola.order.controller;
 
-import com.buglifer.yagola.common.domain.OrderEntity;
 import com.buglifer.yagola.order.dto.OrderDTO;
-import com.buglifer.yagola.order.repository.OrderRepository;
+import com.buglifer.yagola.order.service.OrderService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Optional;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RequestMapping("orders")
 @RestController
 public class OrderController {
 
-    private OrderRepository orderRepository;
+    private OrderService orderService;
 
+    // 주문 조회
     @GetMapping("{seq}")
-    public OrderDTO getOrder(@PathVariable(name = "seq", required = true) long seq) {
-        Optional<OrderEntity> optionalOrderEntity = orderRepository.findById(seq);
-        if(!optionalOrderEntity.isPresent()) {
-            return null;
-        }
-        return new OrderDTO(optionalOrderEntity.get());
+    public ResponseEntity<OrderDTO> getOrder(@PathVariable(name = "seq", required = true) long seq) {
+        return ResponseEntity.ok().body(orderService.findOrder(seq));
     }
+
+    // 주문 생성
+    @PostMapping()
+    public ResponseEntity<OrderDTO> postOrder(@RequestBody OrderDTO orderDTO) {
+        return ResponseEntity.ok().body(orderService.saveOrder(orderDTO));
+    }
+
+    // order-seq 주문 참여 생성
+//    @PostMapping
+//    public ResponseEntity<Object> postJoinOrder() {
+//
+//    }
 }

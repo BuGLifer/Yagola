@@ -1,14 +1,13 @@
 package com.buglifer.yagola.common.domain;
 
+import com.buglifer.yagola.menu.dto.MenuDTO;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true, of = "seq")
 @Table(name = "TB_MENU")
 @Entity
@@ -59,6 +58,20 @@ public class MenuEntity extends CommonEntity {
         userOrders.add(userOrderEntity);
         if(userOrderEntity.getMenu() != this) {
             userOrderEntity.setMenu(this);
+        }
+    }
+
+    @Builder(builderMethodName = "initMenu")
+    public MenuEntity(MenuDTO dto) {
+        seq = dto.getSeq();
+        name = dto.getName();
+        price = dto.getPrice();
+        imgLink = dto.getImgLink();
+        if (dto.getRestaurant() != null) {
+            restaurant = RestaurantEntity
+                    .initRestSeq()
+                    .seq(dto.getRestaurant().getSeq())
+                    .build();
         }
     }
 }
