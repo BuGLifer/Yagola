@@ -33,6 +33,14 @@ public class CommentDTO extends PostDTO {
         if(entity.getComment() != null) {
             setComment(entity.getComment());
         }
+        user = UserDTO
+                .fromEntity()
+                .entity(entity.getUser())
+                .build();
+        order = OrderDTO
+                .fromEntity()
+                .entity(entity.getOrder())
+                .build();
     }
 
     @Builder(
