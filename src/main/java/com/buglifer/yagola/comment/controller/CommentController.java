@@ -29,7 +29,8 @@ public class CommentController {
     }
 
     @PostMapping("")
-    public ResponseEntity<CommentDTO> postCommentDTO(@RequestBody CommentDTO commentDTO) {
+    public ResponseEntity<CommentDTO> postComment(@RequestBody CommentDTO commentDTO) {
         return ResponseEntity.ok().body(commentService.saveComment(commentDTO));
     }
+
 }
