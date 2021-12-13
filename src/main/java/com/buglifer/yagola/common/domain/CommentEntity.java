@@ -67,7 +67,7 @@ public class CommentEntity extends CommonEntity {
     private CommentEntity(CommentDTO dto) {
         seq = dto.getSeq();
         comment = dto.getComment();
-        view = dto.isView();
+        if(dto.getView() != null) view = dto.getView().booleanValue();
         if(dto.getUser() != null) {
             user = UserEntity
                     .initUser()

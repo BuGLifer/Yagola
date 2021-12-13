@@ -10,6 +10,6 @@ import lombok.ToString;
 public class PostDTO extends CommonDTO {
 
     private String comment;
-    private boolean view;
+    private Boolean view;
 
 }
