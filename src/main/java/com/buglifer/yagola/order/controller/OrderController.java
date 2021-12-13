@@ -24,6 +24,6 @@ public class OrderController {
         if(!optionalOrderEntity.isPresent()) {
             return null;
         }
-        return new OrderDTO(optionalOrderEntity.get());
+        return null;
     }
 }
