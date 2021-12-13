@@ -70,7 +70,7 @@ public class CommentEntity extends CommonEntity {
         }
         if(dto.getOrder() != null) {
             order = OrderEntity
-                    .initOrder()
+                    .initOrderSeq()
                     .seq(dto.getOrder().getSeq())
                     .build();
         }

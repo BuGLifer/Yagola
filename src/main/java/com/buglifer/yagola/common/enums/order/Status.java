@@ -1,5 +1,6 @@
 package com.buglifer.yagola.common.enums.order;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -15,5 +16,4 @@ public enum Status {
     , ARRIVAL("도착");
 
     private String name;
-
 }

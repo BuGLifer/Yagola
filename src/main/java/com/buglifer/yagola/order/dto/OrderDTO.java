@@ -50,8 +50,8 @@ public class OrderDTO extends CommonDTO {
     }
 
     @Builder(
-            builderClassName = "initOrder"
-            , builderMethodName = "initOrder"
+            builderClassName = "initDTO"
+            , builderMethodName = "initOrderDTO"
     )
     public OrderDTO(long seq) {
         setSeq(seq);
