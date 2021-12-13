@@ -21,30 +21,34 @@ public class OrderDTO extends CommonDTO {
     private Date arrivalTime;
     private RestaurantDTO restaurant;
 
-    public OrderDTO(OrderEntity orderEntity) {
-        if(orderEntity == null) {
-            return;
-        }
-        setSeq(orderEntity.getSeq());
-        setCreatedTime(orderEntity.getCreatedTime());
-        status = orderEntity.getStatus();
-        offlineTime = orderEntity.getOfflineTime();
-        orderTime = orderEntity.getOrderTime();
-        arrivalTime = orderEntity.getArrivalTime();
-        RestaurantEntity restaurantEntity = orderEntity.getRestaurant();
-        restaurant =
-                new RestaurantDTO()
-                        .builder()
-                        .apiID(restaurantEntity.getApiID())
-                        .name(restaurantEntity.getName())
-                        .tel(restaurantEntity.getTel())
-                        .imgLink(restaurantEntity.getImgLink())
-                        .category(restaurantEntity.getCategory())
-                        .build();
+    @Builder(
+            builderClassName = "init"
+            , builderMethodName = "initOrder"
+    )
+    private OrderDTO(long seq) {
+        setSeq(seq);
     }
 
-    @Builder(builderMethodName = "initOrder")
-    public OrderDTO(long seq) {
-        setSeq(seq);
+    @Builder(
+            builderClassName = "entity"
+            , builderMethodName = "fromEntity"
+    )
+    private OrderDTO(OrderEntity entity) {
+        if(entity == null) {
+            return;
+        }
+        setSeq(entity.getSeq());
+        setCreatedTime(entity.getCreatedTime());
+        status = entity.getStatus();
+        offlineTime = entity.getOfflineTime();
+        orderTime = entity.getOrderTime();
+        arrivalTime = entity.getArrivalTime();
+        RestaurantEntity restaurantEntity = entity.getRestaurant();
+        if(entity.getRestaurant() != null) {
+            restaurant = RestaurantDTO
+                    .initRestaurant()
+                    .seq(entity.getRestaurant().getSeq())
+                    .build();
+        }
     }
 }
