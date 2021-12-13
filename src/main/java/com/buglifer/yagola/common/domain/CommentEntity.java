@@ -1,10 +1,14 @@
 package com.buglifer.yagola.common.domain;
 
 import com.buglifer.yagola.comment.dto.CommentDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
+@ToString(callSuper = true)
+@DynamicUpdate
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true, of = "seq")
@@ -26,10 +30,12 @@ public class CommentEntity extends CommonEntity {
     @Column(name = "VIEW")
     private boolean view;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "U_SEQ")
     private UserEntity user;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "O_SEQ")
     private OrderEntity order;
