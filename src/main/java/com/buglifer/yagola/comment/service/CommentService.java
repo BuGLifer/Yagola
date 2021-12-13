@@ -31,9 +31,12 @@ public class CommentService {
     public CommentDTO findCommentBySeq(long seq) {
         Optional<CommentEntity> optionalCommentEntity = commentRepository.findById(seq);
         if(optionalCommentEntity.isPresent()) {
-            return new CommentDTO(optionalCommentEntity.get());
+            return CommentDTO
+                    .fromEntity()
+                    .entity(optionalCommentEntity.get())
+                    .build();
         }
-        return new CommentDTO();
+        return CommentDTO.initComment().build();
     }
 
     public CommentDTO saveComment(CommentDTO commentDTO) {
@@ -42,6 +45,9 @@ public class CommentService {
                 .dto(commentDTO)
                 .build();
         commentRepository.save(commentEntity);
-        return new CommentDTO(commentEntity);
+        return CommentDTO
+                .fromEntity()
+                .entity(commentEntity)
+                .build();
     }
 }
