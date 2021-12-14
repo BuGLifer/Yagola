@@ -1,6 +1,7 @@
 package com.buglifer.yagola.common.domain;
 
 import com.buglifer.yagola.common.enums.order.Status;
+import com.buglifer.yagola.order.dto.OrderDTO;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -10,7 +11,6 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true, of = "seq")
 @Table(name = "TB_ORDER")
 @Entity
@@ -74,8 +74,29 @@ public class OrderEntity extends CommonEntity {
         }
     }
 
-    @Builder(builderMethodName = "initOrder")
+    @Builder(
+            builderClassName = "initSeq"
+            , builderMethodName = "initOrderSeq"
+    )
     public OrderEntity(long seq) {
         this.seq = seq;
+    }
+
+    @Builder(
+            builderClassName = "init"
+            , builderMethodName = "initOrder"
+    )
+    public OrderEntity(OrderDTO dto) {
+        seq = dto.getSeq();
+        status = dto.getStatus();
+        offlineTime = dto.getOfflineTime();
+        orderTime = dto.getOrderTime();
+        arrivalTime = dto.getArrivalTime();
+        if (dto.getRestaurant() != null) {
+            restaurant = RestaurantEntity
+                    .initRestSeq()
+                    .seq(dto.getRestaurant().getSeq())
+                    .build();
+        }
     }
 }

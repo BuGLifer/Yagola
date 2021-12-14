@@ -46,6 +46,16 @@ public class RestaurantDTO extends CommonDTO {
         ).collect(Collectors.toList());
     }
 
+    @Builder
+    public RestaurantDTO(long seq, String name, String apiID, String tel, String imgLink, Category category) {
+        setSeq(seq);
+        this.name = name;
+        this.apiID = apiID;
+        this.tel = tel;
+        this.imgLink = imgLink;
+        this.category = category;
+    }
+  
     @Builder(
             builderClassName = "init"
             , builderMethodName = "initRestaurant"
@@ -60,6 +70,4 @@ public class RestaurantDTO extends CommonDTO {
         }
         orders.add(orderDTO);
     }
-
-
 }
