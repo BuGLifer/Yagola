@@ -44,11 +44,25 @@ public class CommentDTO extends PostDTO {
     }
 
     @Builder(
-            builderClassName = "dto"
+            builderClassName = "init"
             , builderMethodName = "initComment"
     )
     private CommentDTO(long seq) {
         setSeq(seq);
+    }
+
+    @Builder(
+            builderClassName = "delete"
+            , builderMethodName = "forDelete"
+    )
+    private CommentDTO(long seq, UserDTO userDTO) {
+        setSeq(seq);
+        setUser(
+                UserDTO
+                .initUser()
+                .seq(userDTO.getSeq())
+                .build()
+        );
     }
 
 }

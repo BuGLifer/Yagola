@@ -11,7 +11,11 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.security.auth.message.AuthException;
+import javax.security.sasl.AuthenticationException;
 import javax.transaction.Transactional;
+import java.nio.file.AccessDeniedException;
+import java.rmi.AccessException;
 import java.util.Optional;
 
 @Slf4j
@@ -75,5 +79,13 @@ public class CommentService {
                 .fromEntity()
                 .entity(newCommentEntity)
                 .build();
+    }
+
+    @Transactional
+    public void deleteComment(CommentDTO commentDTO) {
+        Optional<CommentEntity> optionalCommentEntity = commentRepository.findById(commentDTO.getSeq());
+        if(!optionalCommentEntity.isPresent()) throw new EntityNotFoundException("해당 댓글이 존재하지 않습니다.");
+        if(optionalCommentEntity.get().getUser().getSeq() != commentDTO.getUser().getSeq()) throw new SecurityException("댓글 작성자만 접근 가능합니다.");
+        commentRepository.delete(optionalCommentEntity.get());
     }
 }
