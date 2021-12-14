@@ -4,7 +4,7 @@ const callAPI = function(method, url, body, callBack) {
     console.log("[callAPI] url : " + url);
     const xhr = new XMLHttpRequest();
     xhr.onload = function() {
-        if(xhr.status === 200 || xhr.status ===201) {
+        if(xhr.status === 200 || xhr.status === 201 || xhr.status === 204) {
             console.log("[callAPI] Response : " + xhr.responseText);
             console.log("[callAPI] END");
             callBack(xhr.responseText);
