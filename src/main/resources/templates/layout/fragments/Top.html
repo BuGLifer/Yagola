@@ -2,9 +2,34 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="topFragment">
   <div class="flex mc bs0 br24 h150 jcc alc g3pc ffd">
-    <div class="flex w20pc jcc fs100 fdc aic" onclick="location.href='/'"><i class="fab fa-yammer"></i><a class="fs30 cw">골라</a></div>
-    <div class="flex w50pc jcc">2</div>
-    <div class="flex w20pc jcc fs100 fdc aic" onclick="location.href='/gola'"><i class="fas fa-motorcycle"></i><a class="fs30 cw">주문</a></div>
+    <div class="flex w20pc jcc fs100 fdc aic" onclick="location.href='/'">
+      <i class="fab fa-yammer"></i>
+      <a class="fs30 cw">골라</a>
+    </div>
+    <div class="flex w50pc jcc fdc aic">
+      <div class="flex h80 fdc aic jcc">
+        <i class="fab fa-yammer"></i>
+        <i class="fab fa-yammer"></i>
+      </div>
+      <div class="flex h60 fdr aic jcc g30">
+        <div class="flex fdc jcc aic">
+          <i class="fab fa-yammer"></i>
+          <a class="fs24 cw">한식</a>
+        </div>
+        <div class="flex fdc jcc aic">
+          <i class="fab fa-yammer"></i>
+          <a class="fs24 cw">중식</a>
+        </div>
+        <div class="flex fdc jcc aic">
+          <i class="fab fa-yammer"></i>
+          <a class="fs24 cw">일식</a>
+        </div>
+      </div>
+    </div>
+    <div class="flex w20pc jcc fs100 fdc aic" onclick="location.href='/gola'">
+      <i class="fas fa-motorcycle"></i>
+      <a class="fs30 cw">주문</a>
+    </div>
   </div>
 </th:block>
 </html>

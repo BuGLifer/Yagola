@@ -1,6 +1,9 @@
 .fs20 {
     font-size: 20px;
 }
+.fs24 {
+    font-size: 24px;
+}
 .fs30 {
     font-size: 30px;
 }
@@ -15,6 +18,9 @@
 }
 .flex {
     display: flex;
+}
+.fdr {
+    flex-direction: row;
 }
 .fdc {
     flex-direction: column;
@@ -39,6 +45,12 @@
 }
 .br60 {
     border-radius: 60px;
+}
+.h60 {
+    height: 60px;
+}
+.h80 {
+    height: 80px;
 }
 .h100 {
     height: 100px;
@@ -66,4 +78,7 @@
 }
 .g3pc {
     gap: 3%
+}
+.g30 {
+    gap: 30px;
 }
