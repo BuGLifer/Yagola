@@ -1,4 +1,4 @@
-const callAPI = function(method, url, body) {
+const callAPI = function(method, url, body, callBack) {
     console.log("[callAPI] START");
     console.log("[callAPI] Method : " + method);
     console.log("[callAPI] url : " + url);
@@ -7,7 +7,8 @@ const callAPI = function(method, url, body) {
         if(xhr.status === 200 || xhr.status ===201) {
             console.log("[callAPI] Response : " + xhr.responseText);
             console.log("[callAPI] END");
-            return xhr.responseText;
+            callBack(xhr.responseText);
+            return;
         }
         console.log("[callAPI] Error");
         console.log(xhr.responseText);
