@@ -22,7 +22,7 @@ public class CommentService {
     private final EntityManager entityManager;
     private final CommentRepository commentRepository;
 
-    public Page<CommentDTO> findComments(CommentSearch search) {
+    public Page<CommentDTO> findCommentBySearch(CommentSearch search) {
         Page<CommentEntity> commentEntityList =  commentRepository.findAll(search.toSpec(), search.toPageable());
         return commentEntityList
                 .map(

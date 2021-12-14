@@ -3,7 +3,6 @@ package com.buglifer.yagola.comment.controller;
 import com.buglifer.yagola.comment.dto.CommentDTO;
 import com.buglifer.yagola.comment.search.CommentSearch;
 import com.buglifer.yagola.comment.service.CommentService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -20,7 +19,7 @@ public class CommentController {
 
     @GetMapping("")
     public ResponseEntity<Page<CommentDTO>> getComments(CommentSearch search) {
-        return ResponseEntity.ok().body(commentService.findComments(search));
+        return ResponseEntity.ok().body(commentService.findCommentBySearch(search));
     }
 
     @GetMapping("{seq}")

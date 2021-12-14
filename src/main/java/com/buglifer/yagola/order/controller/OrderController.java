@@ -1,6 +1,5 @@
 package com.buglifer.yagola.order.controller;
 
-import com.buglifer.yagola.common.enums.order.Status;
 import com.buglifer.yagola.order.dto.OrderDTO;
 import com.buglifer.yagola.order.service.OrderService;
 import lombok.AllArgsConstructor;
@@ -17,7 +16,7 @@ public class OrderController {
     // 주문 조회
     @GetMapping("{seq}")
     public ResponseEntity<OrderDTO> getOrder(@PathVariable(name = "seq", required = true) long seq) {
-        return ResponseEntity.ok().body(orderService.findOrder(seq));
+        return ResponseEntity.ok().body(orderService.findOrderBySeq(seq));
     }
 
     // 주문 생성
@@ -28,8 +27,9 @@ public class OrderController {
 
     // 주문 삭제
     @DeleteMapping("{seq}")
-    public ResponseEntity<Long> deleteOrder(@PathVariable(name = "seq") long seq) {
-        return ResponseEntity.ok().body(orderService.removeOrder(seq));
+    public ResponseEntity deleteOrder(@PathVariable(name = "seq") long seq) {
+        orderService.removeOrder(seq);
+        return ResponseEntity.noContent().build();
     }
 
 

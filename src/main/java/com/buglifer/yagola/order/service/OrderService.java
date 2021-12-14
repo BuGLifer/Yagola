@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Date;
 import java.util.Optional;
 
@@ -19,12 +20,13 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public OrderDTO findOrder(long seq) {
+    public OrderDTO findOrderBySeq(long seq) {
         Optional<OrderEntity> optionalOrderEntity = orderRepository.findById(seq);
-        if (optionalOrderEntity.isPresent()) {
-            return new OrderDTO(optionalOrderEntity.get());
-        }
-        return new OrderDTO();
+        if (!optionalOrderEntity.isPresent()) throw new EntityNotFoundException("해당 주문이 존재하지 않습니다.");
+        return OrderDTO
+                .fromEntity()
+                .entity(optionalOrderEntity.get())
+                .build();
     }
 
     public OrderDTO saveOrder(OrderDTO orderDTO) {
@@ -33,22 +35,24 @@ public class OrderService {
                 .initOrder()
                 .dto(orderDTO)
                 .build();
-        return new OrderDTO(orderRepository.save(orderEntity));
+        return OrderDTO
+                .fromEntity()
+                .entity(orderRepository.save(orderEntity))
+                .build();
     }
 
-    public long removeOrder(long seq) {
+    public void removeOrder(long seq) {
         Optional<OrderEntity> menuEntity = orderRepository.findById(seq);
-        if (!menuEntity.isPresent()) {
-            log.error("존재 하지 않는 주문 입니다.");
-            return -1;
-        }
+        if (!menuEntity.isPresent()) throw new EntityNotFoundException("해당 주문이 존재하지 않습니다.");
         orderRepository.delete(menuEntity.get());
-        return seq;
     }
 
     public OrderDTO modifyOrder(OrderDTO orderDTO) {
         // 1안 (seq로 한번 find한 후 변경해서 다시 저장)
-        OrderDTO copyOrderDTO = new OrderDTO(orderRepository.findById(orderDTO.getSeq()).get());
+        OrderDTO copyOrderDTO = OrderDTO
+                                .fromEntity()
+                                .entity(orderRepository.findById(orderDTO.getSeq()).get())
+                                .build();
         switch (orderDTO.getStatus().name()) {
             case "OFFLINE":
                 copyOrderDTO.setOfflineTime(new Date());
@@ -66,6 +70,9 @@ public class OrderService {
                 .initOrder()
                 .dto(copyOrderDTO)
                 .build();
-        return new OrderDTO(orderRepository.save(orderEntity));
+        return OrderDTO
+                .fromEntity()
+                .entity(orderRepository.save(orderEntity))
+                .build();
     }
 }

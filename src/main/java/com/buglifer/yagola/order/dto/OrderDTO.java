@@ -14,7 +14,7 @@ import java.util.Date;
 @ToString(callSuper = true)
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderDTO extends CommonDTO {
 
     private Status status;

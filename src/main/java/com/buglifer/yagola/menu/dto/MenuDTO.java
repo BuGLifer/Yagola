@@ -2,14 +2,15 @@ package com.buglifer.yagola.menu.dto;
 
 import com.buglifer.yagola.comment.dto.CommentDTO;
 import com.buglifer.yagola.common.domain.MenuEntity;
+import com.buglifer.yagola.common.dto.CommonDTO;
 import com.buglifer.yagola.restaurant.dto.RestaurantDTO;
 import lombok.*;
 
 @ToString(callSuper = true)
 @Getter
 @Setter
-@NoArgsConstructor
-public class MenuDTO extends CommentDTO {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class MenuDTO extends CommonDTO {
 
     private String name;
     private long price;
@@ -17,16 +18,16 @@ public class MenuDTO extends CommentDTO {
     private RestaurantDTO restaurant;
 
     @Builder(
-            builderClassName = "menuEntity"
-            , builderMethodName = "fromMenuEntity"
+            builderClassName = "entity"
+            , builderMethodName = "fromEntity"
     )
-    public MenuDTO(MenuEntity menuEntity) {
-        setName(menuEntity.getName());
-        setPrice(menuEntity.getPrice());
-        setImgLink(menuEntity.getImgLink());
+    private MenuDTO(MenuEntity entity) {
+        setName(entity.getName());
+        setPrice(entity.getPrice());
+        setImgLink(entity.getImgLink());
         restaurant = RestaurantDTO
-                .initRestDTOSeq()
-                .seq(menuEntity.getRestaurant().getSeq())
+                .initRestaurant()
+                .seq(entity.getRestaurant().getSeq())
                 .build();
     }
 
@@ -34,5 +35,5 @@ public class MenuDTO extends CommentDTO {
             builderClassName = "initMenu"
             , builderMethodName = "initMenu"
     )
-    public MenuDTO(long seq) { setSeq(seq); }
+    private MenuDTO(long seq) { setSeq(seq); }
 }
