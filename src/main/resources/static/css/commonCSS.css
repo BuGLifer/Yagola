@@ -1,3 +1,30 @@
 .fs20 {
     font-size: 20px;
 }
+.flex {
+    display: flex;
+}
+.bgw {
+    background: white;
+}
+.bs1 {
+    border: 1px solid;
+}
+.br {
+    border-radius: 24px;
+}
+.h100 {
+    height: 100px;
+}
+.w30pc {
+    width: 30%;
+}
+.jcc {
+    justify-content: center;
+}
+.alc {
+    align-items: center;
+}
+.g3pc {
+    gap: 3%
+}
