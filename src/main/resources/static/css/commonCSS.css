@@ -1,23 +1,62 @@
 .fs20 {
     font-size: 20px;
 }
+.fs30 {
+    font-size: 30px;
+}
+.fs100 {
+    font-size: 100px;
+}
+.ffd {
+    font-family: 'Do Hyeon', sans-serif;
+}
+.cw {
+    color: white;
+}
 .flex {
     display: flex;
+}
+.fdc {
+    flex-direction: column;
+}
+.aic {
+    align-items: center;
 }
 .bgw {
     background: white;
 }
+.mc {
+    background-color: #d7004a;
+}
+.bs0 {
+    border: 0px solid;
+}
 .bs1 {
     border: 1px solid;
 }
-.br {
+.br24 {
     border-radius: 24px;
+}
+.br60 {
+    border-radius: 60px;
 }
 .h100 {
     height: 100px;
 }
+.h120 {
+    height: 120px;
+}
+.h150 {
+    height: 150px;
+}
+.w20pc {
+    width: 20%;
+}
 .w30pc {
     width: 30%;
+}
+.w50pc {
+    width: 50%;
 }
 .jcc {
     justify-content: center;
