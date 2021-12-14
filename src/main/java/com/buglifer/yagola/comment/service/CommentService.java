@@ -39,13 +39,11 @@ public class CommentService {
 
     public CommentDTO findCommentBySeq(long seq) {
         Optional<CommentEntity> optionalCommentEntity = commentRepository.findById(seq);
-        if(optionalCommentEntity.isPresent()) {
-            return CommentDTO
-                    .fromEntity()
-                    .entity(optionalCommentEntity.get())
-                    .build();
-        }
-        return CommentDTO.initComment().build();
+        if(!optionalCommentEntity.isPresent()) throw new EntityNotFoundException("해당 댓글이 존재하지 않습니다.");
+        return CommentDTO
+                .fromEntity()
+                .entity(optionalCommentEntity.get())
+                .build();
     }
 
     public CommentDTO saveComment(CommentDTO commentDTO) {
