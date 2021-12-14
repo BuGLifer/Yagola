@@ -19,8 +19,8 @@ public class ExceptionResponse {
             builderClassName = "init"
             , builderMethodName = "initException"
     )
-    private ExceptionResponse(HttpStatus httpStatus, RuntimeException runtimeException) {
+    private ExceptionResponse(HttpStatus httpStatus, Exception exception) {
         code = httpStatus.value();
-        result = runtimeException.getMessage();
+        result = exception.getMessage();
     }
 }
