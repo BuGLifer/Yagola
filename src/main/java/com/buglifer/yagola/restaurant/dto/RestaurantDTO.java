@@ -27,7 +27,7 @@ public class RestaurantDTO extends CommonDTO {
             builderClassName = "entity"
             , builderMethodName = "fromEntity"
     )
-    public RestaurantDTO(RestaurantEntity entity) {
+    private RestaurantDTO(RestaurantEntity entity) {
         if(entity == null) {
             return;
         }
@@ -38,7 +38,12 @@ public class RestaurantDTO extends CommonDTO {
         tel = entity.getTel();
         imgLink = entity.getImgLink();
         category = entity.getCategory();
-        orders = entity.getOrders().stream().map(e -> new OrderDTO(e)).collect(Collectors.toList());
+        orders = entity.getOrders().stream().map(
+                e -> OrderDTO
+                    .fromEntity()
+                    .entity(e)
+                    .build()
+        ).collect(Collectors.toList());
     }
 
     @Builder
@@ -50,6 +55,14 @@ public class RestaurantDTO extends CommonDTO {
         this.imgLink = imgLink;
         this.category = category;
     }
+  
+    @Builder(
+            builderClassName = "init"
+            , builderMethodName = "initRestaurant"
+    )
+    private RestaurantDTO(long seq) {
+        setSeq(seq);
+    }
 
     public void setOrder(OrderDTO orderDTO) {
         if(this.orders.isEmpty()) {
@@ -57,10 +70,4 @@ public class RestaurantDTO extends CommonDTO {
         }
         orders.add(orderDTO);
     }
-
-    @Builder(
-            builderClassName = "initRestDTOSeq"
-            , builderMethodName = "initRestDTOSeq"
-    )
-    public RestaurantDTO(long seq) { setSeq(seq); }
 }
