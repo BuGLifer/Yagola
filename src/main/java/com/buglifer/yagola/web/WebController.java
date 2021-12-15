@@ -16,4 +16,7 @@ public class WebController {
     @GetMapping("invite")
     public String getInvite() { return "web/Invite"; }
 
+    @GetMapping("gola")
+    public String getGola() { return "web/Gola"; }
+
 }
