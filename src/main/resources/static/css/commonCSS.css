@@ -82,6 +82,9 @@
 .jcsb {
     justify-content: space-between;
 }
+.jcfs {
+    justify-content: flex-start;
+}
 .jcfe {
     justify-content: flex-end;
 }
@@ -236,7 +239,7 @@
 */
 
 .milestone {
-    margin: 5px 50px 10px;
+    margin: 0px 50px 5px;
     font-family: 'Noto Sans KR', sans-serif;
     font-style: bold;
     font-size: 1.2vw;
