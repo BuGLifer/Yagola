@@ -23,3 +23,8 @@ const callAPI = function(method, url, body, callBack) {
 const setMilestonePath = function(path) {
     document.getElementById("milestone").textContent = path;
 };
+
+const getQueryString = function() {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    return Object.fromEntries(urlSearchParams.entries());
+};
