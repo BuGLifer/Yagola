@@ -29,6 +29,9 @@
 .fs25vw {
     font-size: 2.5vw;
 }
+.fs4vw {
+    font-size: 4vw;
+}
 .fs6vw {
     font-size: 6vw;
 }
@@ -72,6 +75,9 @@
 }
 .jcsa {
     justify-content: space-around;
+}
+.jcsb {
+    justify-content: space-between;
 }
 .jcfe {
     justify-content: flex-end;
@@ -133,11 +139,17 @@
     Width 관련
 */
 
+.w10vw {
+    width: 10vw;
+}
 .w15vw {
     width: 15vw;
 }
 .w50vw {
     width: 50vw;
+}
+.w55vw {
+    width: 55vw;
 }
 .w60vw {
     width: 60vw;
@@ -184,6 +196,9 @@
 
 .ml20 {
     margin-left: 20px;
+}
+.mr10 {
+    margin-right: 10px;
 }
 .mr20 {
     margin-right: 20px;
