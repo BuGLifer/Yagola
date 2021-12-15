@@ -1,34 +1,72 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="topFragment">
-  <div class="flex mc bs0 br24 h150 jcc alc g3pc ffd">
-    <div class="flex w20pc jcc fs100 fdc aic" onclick="location.href='/'">
-      <i class="fab fa-yammer"></i>
-      <a class="fs30 cw">골라</a>
+  <div class="flex mc bs0 br24 h20v jcsa aic ffd ml20 mr20 mt20 mb20">
+    <div class="flex w15vw jcc h10v fdc aic" onclick="location.href='/'">
+      <i class="fab fa-yammer fs6vw"></i>
+      <span class="fs25vw cw">골라</span>
     </div>
-    <div class="flex w50pc jcc fdc aic">
-      <div class="flex h80 fdc aic jcc">
-        <i class="fab fa-yammer"></i>
-        <i class="fab fa-yammer"></i>
-      </div>
-      <div class="flex h60 fdr aic jcc g30">
-        <div class="flex fdc jcc aic">
+    <div class="flex w70vw jcc fdc aic mt15">
+      <div class="flex h10v aic jcc bs0 br24 w70vw bgnw mb10">
+        <div>
           <i class="fab fa-yammer"></i>
-          <a class="fs24 cw">한식</a>
+          <i class="fab fa-yammer"></i>
         </div>
-        <div class="flex fdc jcc aic">
-          <i class="fab fa-yammer"></i>
-          <a class="fs24 cw">중식</a>
-        </div>
-        <div class="flex fdc jcc aic">
-          <i class="fab fa-yammer"></i>
-          <a class="fs24 cw">일식</a>
+        <input type="text" />
+        <div>
+
         </div>
       </div>
+      <div class="flex h6v fdr w70vw jcsa mt10 mb10">
+        <div class="flex fdc jcc aic">
+          <i class="fas fa-pepper-hot fs22vw"></i>
+          <span class="fs12vw cw">한식</span>
+        </div>
+        <div class="flex fdc jcc aic">
+          <i class="fas fa-yin-yang fs22vw"></i>
+          <span class="fs12vw cw">중식</span>
+        </div>
+        <div class="flex fdc jcc aic">
+          <i class="fas fa-fish fs22vw"></i>
+          <span class="fs12vw cw">일식</span>
+        </div>
+        <div class="flex fdc jcc aic">
+          <i class="fas fa-pizza-slice fs22vw"></i>
+          <span class="fs12vw cw">양식</span>
+        </div>
+        <div class="flex fdc jcc aic">
+          <i class="fas fa-male fs22vw"></i>
+          <span class="fs12vw cw">1인분</span>
+        </div>
+        <div class="flex fdc jcc aic">
+          <i class="fas fa-building fs22vw"></i>
+          <span class="fs12vw cw">프랜차이즈</span>
+        </div>
+        <div class="flex fdc jcc aic">
+          <i class="fas fa-cloud-moon fs22vw"></i>
+          <span class="fs12vw cw">야식</span>
+        </div>
+        <div class="flex fdc jcc aic">
+          <i class="fas fa-piggy-bank fs22vw"></i>
+          <span class="fs12vw cw">족발/보쌈</span>
+        </div>
+        <div class="flex fdc jcc aic">
+          <i class="fas fa-school fs22vw"></i>
+          <span class="fs12vw cw">분식</span>
+        </div>
+        <div class="flex fdc jcc aic">
+          <i class="fas fa-coffee fs22vw"></i>
+          <span class="fs12vw cw">디저트</span>
+        </div>
+        <div class="flex fdc jcc aic">
+          <i class="fas fa-store fs22vw"></i>
+          <span class="fs12vw cw">마트</span>
+        </div>
+      </div>
     </div>
-    <div class="flex w20pc jcc fs100 fdc aic" onclick="location.href='/gola'">
-      <i class="fas fa-motorcycle"></i>
-      <a class="fs30 cw">주문</a>
+    <div class="flex w15vw jcc h10v fdc aic" onclick="location.href='/gola'">
+      <i class="fas fa-motorcycle fs6vw"></i>
+      <span class="fs25vw cw">주문</span>
     </div>
   </div>
 </th:block>

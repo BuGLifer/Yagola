@@ -1,3 +1,10 @@
+/*
+    Font 관련
+*/
+
+.ffd {
+    font-family: 'Do Hyeon', sans-serif;
+}
 .fs20 {
     font-size: 20px;
 }
@@ -7,15 +14,47 @@
 .fs30 {
     font-size: 30px;
 }
+.fs35 {
+    font-size: 35px;
+}
 .fs100 {
     font-size: 100px;
 }
-.ffd {
-    font-family: 'Do Hyeon', sans-serif;
+.fs12vw {
+    font-size: 1.2vw;
 }
+.fs22vw {
+    font-size: 2.2vw;
+}
+.fs25vw {
+    font-size: 2.5vw;
+}
+.fs6vw {
+    font-size: 6vw;
+}
+
+/*
+    색상 관련
+*/
+
 .cw {
     color: white;
 }
+
+.bgw {
+    background: white;
+}
+.bgnw {
+    background: navajowhite;
+}
+.mc {
+    background-color: #d7004a;
+}
+
+/*
+    Flex, 정렬 관련
+*/
+
 .flex {
     display: flex;
 }
@@ -28,12 +67,17 @@
 .aic {
     align-items: center;
 }
-.bgw {
-    background: white;
+.jcc {
+    justify-content: center;
 }
-.mc {
-    background-color: #d7004a;
+.jcsa {
+    justify-content: space-around;
 }
+
+/*
+    Border 관련
+*/
+
 .bs0 {
     border: 0px solid;
 }
@@ -46,8 +90,28 @@
 .br60 {
     border-radius: 60px;
 }
+
+/*
+    Height 관련
+*/
+
+.h3v {
+    height: 3vh;
+}
+.h10v {
+    height: 10vh;
+}
+.h6v {
+    height: 6vh;
+}
+.h20v {
+    height: 20vh;
+}
 .h60 {
     height: 60px;
+}
+.h70 {
+    height: 70px;
 }
 .h80 {
     height: 80px;
@@ -61,6 +125,20 @@
 .h150 {
     height: 150px;
 }
+
+/*
+    Width 관련
+*/
+
+.w15vw {
+    width: 15vw;
+}
+.w60vw {
+    width: 60vw;
+}
+.w70vw {
+    width: 70vw;
+}
 .w20pc {
     width: 20%;
 }
@@ -70,15 +148,52 @@
 .w50pc {
     width: 50%;
 }
-.jcc {
-    justify-content: center;
+.w60pc {
+    width: 60%;
 }
-.alc {
-    align-items: center;
+.w90pc {
+    width: 90%;
 }
+.w100pc {
+    width: 100%;
+}
+
+/*
+    Gap, 간격 관련
+*/
+
 .g3pc {
     gap: 3%
 }
+.g20 {
+    gap: 20px;
+}
 .g30 {
     gap: 30px;
+}
+
+/*
+    Margin 관련
+*/
+
+.ml20 {
+    margin-left: 20px;
+}
+.mr20 {
+    margin-right: 20px;
+}
+.mb10 {
+    margin-bottom: 10px;
+}
+.mb20 {
+    margin-bottom: 20px;
+}
+.mt10 {
+    margin-top: 10px;
+}
+.mt15 {
+    margin-top: 15px;
+}
+.mt20 {
+    margin-top: 20px;
 }
