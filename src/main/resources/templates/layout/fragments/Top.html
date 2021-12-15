@@ -29,7 +29,7 @@
         </div>
         <form class="d-flex h6v w55vw">
           <input class="form-control me-2 w50vw" type="search" placeholder="고르기" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit"><i class="fas fa-mouse"></i></button>
+          <button class="btn btn-outline-success" onclick="search();"><i class="fas fa-mouse"></i></button>
         </form>
       </div>
       <div class="flex h6v fdr w70vw jcsa mt10 mb10">
@@ -88,5 +88,6 @@
     <span><i class="fab fa-yammer"></i>골라</span>
     <span id="milestone"></span>
   </div>
+  <script th:src="@{/js/top.js}"></script>
 </th:block>
 </html>
