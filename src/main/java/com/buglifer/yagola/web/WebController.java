@@ -13,7 +13,7 @@ public class WebController {
         return "web/Main";
     }
 
-    @GetMapping("gola")
-    public String getGola() { return "web/Gola"; }
+    @GetMapping("invite")
+    public String getInvite() { return "web/Invite"; }
 
 }
