@@ -73,6 +73,9 @@
 .jcsa {
     justify-content: space-around;
 }
+.jcfe {
+    justify-content: flex-end;
+}
 
 /*
     Border 관련
@@ -133,6 +136,9 @@
 .w15vw {
     width: 15vw;
 }
+.w50vw {
+    width: 50vw;
+}
 .w60vw {
     width: 60vw;
 }
@@ -181,6 +187,9 @@
 }
 .mr20 {
     margin-right: 20px;
+}
+.mr5vw {
+    margin-right: 5vw;
 }
 .mb10 {
     margin-bottom: 10px;
