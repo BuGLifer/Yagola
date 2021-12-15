@@ -24,6 +24,9 @@ public class UserEntity extends CommonEntity {
     private String ip;
 
     @OneToMany(mappedBy = "user")
+    private List<OrderEntity> orders;
+
+    @OneToMany(mappedBy = "user")
     private List<CommentEntity> comments;
 
     @OneToMany(mappedBy = "user")
