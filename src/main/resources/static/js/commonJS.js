@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", function() {
+});
 const callAPI = function(method, url, body, callBack) {
     console.log("[callAPI] START");
     console.log("[callAPI] Method : " + method);
@@ -20,4 +22,4 @@ const callAPI = function(method, url, body, callBack) {
 
 const setMilestonePath = function(path) {
     document.getElementById("milestone").textContent = path;
-}
+};

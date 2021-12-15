@@ -185,7 +185,9 @@
 /*
     Gap, 간격 관련
 */
-
+.g1v {
+    gap: 1vh;
+}
 .g3pc {
     gap: 3%
 }
@@ -247,4 +249,11 @@
 .main {
     margin: 20px 30px 10px;
 
+}
+.sidebar {
+    margin: 10px 20px 10px;
+    font-family: 'Noto Sans KR', sans-serif !important;
+}
+.nav-pills .nav-link.active {
+    background-color: #d7004a !important;
 }
