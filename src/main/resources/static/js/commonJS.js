@@ -17,3 +17,7 @@ const callAPI = function(method, url, body, callBack) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(body));
 };
+
+const setMilestonePath = function(path) {
+    document.getElementById("milestone").textContent = path;
+}
