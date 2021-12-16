@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    console.log(getQueryString());
+    keepSelectedOptions();
 });
 
 const search = function() {
@@ -27,8 +27,8 @@ const getSelectedCategoryURL = function() {
 };
 
 const getOrderOptionURL = function() {
-    const isOrderByTime = document.getElementById('orderByTime').checked;
-    const isOrderByCount = document.getElementById('orderByCount').checked;
+    const isOrderByTime = document.getElementById('time').checked;
+    const isOrderByCount = document.getElementById('count').checked;
     if(!isOrderByTime && !isOrderByCount) return;
     let checkedOrderURL = "order=";
     if(isOrderByTime) checkedOrderURL += "time,";
@@ -56,4 +56,30 @@ const getSearchQueryString = function() {
     if(orderURL) queryString += orderURL + "&";
     if(searchURL) queryString += searchURL + "&";
     return queryString.slice(0, -1);
+};
+
+const keepSelectedOptions = function() {
+    const queryString = getQueryString();
+    console.log(queryString);
+    if(queryString.random) {
+        document.getElementById('randomSearch').classList.add('selected');
+        return;
+    }
+    if(queryString.category) {
+        const categories = queryString.category.split(',');
+        for(let index = 0; index < categories.length; index ++) {
+            document.getElementById(categories[index]).classList.add('selected');
+        }
+    }
+    if(queryString.order) {
+        const orderOptions = queryString.order.split(',');
+        const isOrderByTime = document.getElementById('time').checked = false;
+        const isOrderByCount = document.getElementById('count').checked = false;
+        for(let index = 0; index < orderOptions.length; index ++) {
+            document.getElementById(orderOptions[index]).checked = true;
+        }
+    }
+    if(queryString.search) {
+        document.getElementById('searchBar').value = queryString.search;
+    }
 };
