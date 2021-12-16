@@ -23,6 +23,9 @@
 .fs100 {
     font-size: 100px;
 }
+.fs10vw {
+    font-size: 1.0vw;
+}
 .fs12vw {
     font-size: 1.2vw;
 }
@@ -99,11 +102,23 @@
 .bs1 {
     border: 1px solid;
 }
+.br14 {
+    border-radius: 14px;
+}
 .br24 {
     border-radius: 24px;
 }
 .br60 {
     border-radius: 60px;
+}
+.br24u {
+    border-radius: 24px 24px 0px 0px;
+}
+.br14d {
+    border-radius: 0px 0px 14px 14px;
+}
+.br24d {
+    border-radius: 0px 0px 24px 24px;
 }
 
 /*
@@ -223,11 +238,17 @@
 .mr5vw {
     margin-right: 5vw;
 }
+.mb5 {
+    margin-bottom: 5px;
+}
 .mb10 {
     margin-bottom: 10px;
 }
 .mb20 {
     margin-bottom: 20px;
+}
+.mt5 {
+    margin-top: 5px;
 }
 .mt10 {
     margin-top: 10px;
