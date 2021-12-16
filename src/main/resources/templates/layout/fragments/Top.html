@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="topFragment">
-  <div class="flex mc bs0 br24 h20v jcsa aic ffd m20">
+  <div class="flex mc bs0 br24 h22v jcsa aic ffd m20">
     <div class="flex w15vw jcc h10v fdc aic" onclick="location.href='/'">
       <i class="fab fa-yammer fs6vw"></i>
       <span class="fs25vw cw">골라</span>
@@ -9,7 +9,7 @@
     <div class="flex w70vw jcc fdc aic mt15">
       <div class="flex h10v aic jcc bs0 br24 w70vw bgnw mb10">
         <div class="flex fdr jcsb aic mr10 w10vw">
-          <div>
+          <div onclick="location.href='/gola?random=true'">
             <i class="fas fa-dice fs4vw"></i>
           </div>
           <div class="fdc">
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="flex h6v fdr w70vw jcsa mt10 mb10">
-        <div class="flex fdc jcc aic">
+        <div class="flex fdc jcc aic" onclick="location.href='/gola?category=true'">
           <i class="fas fa-pepper-hot fs22vw"></i>
           <span class="fs12vw cw">한식</span>
         </div>
@@ -48,6 +48,10 @@
         <div class="flex fdc jcc aic">
           <i class="fas fa-pizza-slice fs22vw"></i>
           <span class="fs12vw cw">양식</span>
+        </div>
+        <div class="flex fdc jcc aic">
+          <i class="fas fa-drumstick-bite fs22vw"></i>
+          <span class="fs12vw cw">치킨</span>
         </div>
         <div class="flex fdc jcc aic">
           <i class="fas fa-male fs22vw"></i>
