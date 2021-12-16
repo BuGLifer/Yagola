@@ -1,14 +1,7 @@
 const search = function() {
-    console.log(getSelectedCategory());
-    const searchValue = document.getElementById('searchBar').value;
-    const orderByTime = document.getElementById('orderByTime').checked;
-    const orderByCount = document.getElementById('orderByCount').checked;
-    const url = '/gola';
-
-    let queryString = '?orderByTime=' + orderByTime;
-    queryString += '&orderByCount=' + orderByCount;
-    queryString += '&search=' + searchValue;
-    //location.href = url + queryString;
+    const searchQueryString = getSearchQueryString();
+    const searchPageURL = '/gola';
+    location.href = searchPageURL + searchQueryString;
 };
 
 const selectSearchOption = function(e) {
@@ -19,14 +12,44 @@ const selectSearchOption = function(e) {
     e.classList.add('selected');
 };
 
-const getSelectedCategory = function() {
+const getSelectedCategoryURL = function() {
     const selectedCategoryList = document.getElementById('categoryList').getElementsByClassName('selected');
-    let selectedCategoryURL = "";
-    if(selectedCategoryList.length == 0) return selectedCategoryURL;
-    selectedCategoryURL = "category=";
+    if(selectedCategoryList.length == 0) return;
+    let selectedCategoryURL = "category=";
     for(let index = 0; index < selectedCategoryList.length; index++) {
         selectedCategoryURL += selectedCategoryList[index].id + "&";
     }
-    selectedCategoryURL = selectedCategoryURL.slice(0, -1);
-    return selectedCategoryURL;
+    return selectedCategoryURL.slice(0, -1);
+};
+
+const getOrderOptionURL = function() {
+    const isOrderByTime = document.getElementById('orderByTime').checked;
+    const isOrderByCount = document.getElementById('orderByCount').checked;
+    if(!isOrderByTime && !isOrderByCount) return;
+    let checkedOrderURL = "order=";
+    if(isOrderByTime) checkedOrderURL += "time&";
+    if(isOrderByCount) checkedOrderURL += "count&";
+    return checkedOrderURL.slice(0, -1);
+};
+
+const getSearchValueURL = function() {
+    const searchValue = document.getElementById('searchBar').value;
+    if(!searchValue) return;
+    return "search=" + searchValue;
+};
+
+const clickRandomSearch = function() {
+    location.href= '/gola?' + 'random=true';
+};
+
+const getSearchQueryString = function() {
+    const categoryURL = getSelectedCategoryURL();
+    const orderURL = getOrderOptionURL();
+    const searchURL = getSearchValueURL();
+    if(!categoryURL && !orderURL && !searchURL) return "";
+    let queryString = "?";
+    if(categoryURL) queryString += categoryURL + "&";
+    if(orderURL) queryString += orderURL + "&";
+    if(searchURL) queryString += searchURL + "&";
+    return queryString.slice(0, -1);
 };
