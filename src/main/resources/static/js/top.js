@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", function() {
+    console.log(getQueryString());
+});
+
 const search = function() {
     const searchQueryString = getSearchQueryString();
     const searchPageURL = '/gola';
@@ -17,7 +21,7 @@ const getSelectedCategoryURL = function() {
     if(selectedCategoryList.length == 0) return;
     let selectedCategoryURL = "category=";
     for(let index = 0; index < selectedCategoryList.length; index++) {
-        selectedCategoryURL += selectedCategoryList[index].id + "&";
+        selectedCategoryURL += selectedCategoryList[index].id + ",";
     }
     return selectedCategoryURL.slice(0, -1);
 };
@@ -27,8 +31,8 @@ const getOrderOptionURL = function() {
     const isOrderByCount = document.getElementById('orderByCount').checked;
     if(!isOrderByTime && !isOrderByCount) return;
     let checkedOrderURL = "order=";
-    if(isOrderByTime) checkedOrderURL += "time&";
-    if(isOrderByCount) checkedOrderURL += "count&";
+    if(isOrderByTime) checkedOrderURL += "time,";
+    if(isOrderByCount) checkedOrderURL += "count,";
     return checkedOrderURL.slice(0, -1);
 };
 
