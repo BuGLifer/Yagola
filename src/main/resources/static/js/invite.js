@@ -1,11 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const callBackFunc = function(response) {
-        alert(response)
-    };
     setMilestonePath(' > 모집');
-    const queryString = getQueryString();
-    console.log(queryString);
-    console.log(queryString.tt);
-
+    setOrderCard();
     //callAPI('GET', 'http://localhost/comments', '', callBackFunc);
 });
+
+const createOrderCard = function(order) {
+    let orderCardDiv = document.createElement('div');
+    orderCardDiv.classList.add('orderCard');
+    return orderCardDiv;
+};
+
+const setOrderCard = function() {
+    let orderCardArea = document.getElementById('orderCardArea');
+    orderCardArea.append(createOrderCard(null));
+};
