@@ -12,5 +12,6 @@ const createOrderCard = function(order) {
 
 const setOrderCard = function() {
     let orderCardArea = document.getElementById('orderCardArea');
+    orderCardArea.classList.add('orderCardArea');
     orderCardArea.append(createOrderCard(null));
 };

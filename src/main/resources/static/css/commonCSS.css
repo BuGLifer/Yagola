@@ -275,10 +275,12 @@
 }
 .main {
     margin: 20px 30px 10px;
-
 }
 .body {
-    width: 80vw;
+    width: 90%;
+}
+.side {
+    width: 10%;
 }
 .sidebar {
     margin: 10px 20px 10px;
@@ -290,6 +292,11 @@
 .selected {
     border-radius: 5px;
     border: 3px solid #2195e1;
+}
+.orderCardArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .orderCard {
     height: 15vh;
