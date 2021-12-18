@@ -112,13 +112,13 @@
     border-radius: 60px;
 }
 .br24u {
-    border-radius: 24px 24px 0px 0px;
+    border-radius: 24px 24px 0 0;
 }
 .br14d {
-    border-radius: 0px 0px 14px 14px;
+    border-radius: 0 0 14px 14px;
 }
 .br24d {
-    border-radius: 0px 0px 24px 24px;
+    border-radius: 0 0 24px 24px;
 }
 
 /*
@@ -268,9 +268,8 @@
 */
 
 .milestone {
-    margin: 0px 50px 5px;
+    margin: 0 50px 5px;
     font-family: 'Noto Sans KR', sans-serif;
-    font-style: bold;
     font-size: 1.2vw;
 }
 .main {
