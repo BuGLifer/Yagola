@@ -277,6 +277,9 @@
     margin: 20px 30px 10px;
 
 }
+.body {
+    width: 80vw;
+}
 .sidebar {
     margin: 10px 20px 10px;
     font-family: 'Noto Sans KR', sans-serif !important;
@@ -287,4 +290,10 @@
 .selected {
     border-radius: 5px;
     border: 3px solid #2195e1;
+}
+.orderCard {
+    height: 15vh;
+    width: 80%;
+    background-color: #d7004a;
+    border-radius: 1vw;
 }
