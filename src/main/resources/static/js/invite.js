@@ -13,6 +13,10 @@ const createOrderCard = function(order) {
     let restaurantInfoDiv = document.createElement('div');
     restaurantInfoDiv.classList.add('restaurantInfo');
     const restaurantInfo = order.restaurant;
+    let restaurantI = document.createElement('i');
+    restaurantI.classList.add('fas');
+    restaurantI.classList.add('fa-utensils');
+    restaurantInfoDiv.append(restaurantI);
     let restaurantItemSpan = document.createElement('span');
     restaurantItemSpan.textContent = restaurantInfo.name;
     restaurantInfoDiv.append(restaurantItemSpan);
