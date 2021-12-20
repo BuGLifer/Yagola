@@ -6,7 +6,7 @@
 .orderCard {
     display: flex;
     flex-direction: column;
-    height: 10vh;
+    height: 12vh;
     width: 90%;
     background-color: #d7004a;
     border-radius: 1vw;

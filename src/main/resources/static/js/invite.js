@@ -8,6 +8,8 @@ const createOrderCard = function(order) {
     console.log(order);
     let orderCardDiv = document.createElement('div');
     orderCardDiv.classList.add('orderCard');
+    orderCardDiv.onclick = clickOrderCard;
+    orderCardDiv.dataset.seq = order.seq;
     let restaurantInfoDiv = document.createElement('div');
     restaurantInfoDiv.classList.add('restaurantInfo');
     let guestInfoDiv = document.createElement('div');
@@ -63,4 +65,8 @@ const setOrderCard = function() {
         }
     };
     orderCardArea.append(createOrderCard(testOrder));
+};
+
+const clickOrderCard = function() {
+  alert(this.dataset.seq);
 };
