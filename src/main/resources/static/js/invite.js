@@ -118,7 +118,47 @@ const setOrderCard = function() {
             , "name" : "골목식당"
         }
     };
+    const testOrder2 = {
+        "seq" : 1
+        , "status" : "ONLINE"
+        , "createdTime" : "2021-12-18 13:00:00"
+        , "host" : {
+            "seq" : 1
+            , "nickName" : "길로그"
+        }
+        , "guest" : [
+            {
+                "seq" : 2
+                , "nickName" : "참가자1"
+                , "menu" : {
+                    "seq" : 1
+                    , "name" : "닭가슴살"
+                }
+            }
+            , {
+                "seq" : 3
+                , "nickName" : "참가자3"
+                , "menu" : {
+                    "seq" : 2
+                    , "name" : "고구마"
+                }
+            }
+            , {
+                "seq" : 4
+                , "nickName" : "참가자4"
+                , "menu" : {
+                    "seq" : 3
+                    , "name" : "야채믹스"
+                }
+            }
+        ]
+        , "restaurant" : {
+            "seq" : 1
+            , "name" : "골목식당의백종원이좋아한연돈"
+        }
+    };
     orderCardArea.append(createOrderCard(testOrder));
+    orderCardArea.append(createOrderCard(testOrder2));
 };
 
 const clickOrderCard = function() {
