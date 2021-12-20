@@ -3,6 +3,8 @@ package com.buglifer.yagola.common.okhttp;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import okio.Buffer;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.io.IOException;
 
@@ -21,7 +23,7 @@ public final class OKHttp {
             logBuilder.append("[OKHttp Request Fail]");
             if (request != null) logBuilder.append(request.toString()).append(" RequestBody = {").append(requestBodyToString(request)).append("} ");
             log.error(logBuilder.toString(), e);
-            return null;
+            throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, logBuilder.toString());
         }
         if ((response == null) || !response.isSuccessful()) {
             logBuilder.append("[OKHttp Response is not Succesed]");
@@ -33,7 +35,9 @@ public final class OKHttp {
                 try {
                     log.error(response.body().string());
                 } catch (IOException e) {
-                    log.error("Response Body Reading Fail", e);
+                    String message = "Response Body Reading Fail";
+                    log.error(message, e);
+                    throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, message);
                 }
                 response.body().close();
             }
@@ -75,15 +79,18 @@ public final class OKHttp {
             copyRequest.body().writeTo(buffer);
             return buffer.readUtf8();
         } catch (IOException e) {
-            return "Request Body Has Error";
+            String message = "Request Body Has Error";
+            log.error(message, e);
+            throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, message);
         }
     }
     public static String getResponseBody(Request request) throws IOException {
         try {
             return getResponse(request).body().string();
         } catch (IOException e) {
-            log.error("[OKHTTP Util] " + e.getMessage());
-            throw e;
+            String message = "[OKHTTP Util] " + e.getMessage();
+            log.error(message, e);
+            throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, message);
         }
     }
 

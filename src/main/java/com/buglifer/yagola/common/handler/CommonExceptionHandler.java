@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpServerErrorException;
 
 import javax.persistence.EntityNotFoundException;
 import java.nio.file.AccessDeniedException;
@@ -31,5 +32,15 @@ public class CommonExceptionHandler {
                 .httpStatus(HttpStatus.FORBIDDEN)
                 .exception(e)
                 .build());
+    }
+
+    @ExceptionHandler(HttpServerErrorException.class)
+    public ResponseEntity<ExceptionResponse> handleHttpServerErrorException(HttpServerErrorException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                ExceptionResponse
+                        .initException()
+                        .httpStatus(HttpStatus.BAD_REQUEST)
+                        .exception(e)
+                        .build());
     }
 }
