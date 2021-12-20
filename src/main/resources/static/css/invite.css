@@ -15,8 +15,25 @@
     width: 60%;
 }
 .guestInfo {
+    height: 20%;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1vw;
+    margin-bottom: 5px;
+    margin-left: -1vw;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.1vw;
+    color: white;
 }
 .orderInfo {
+    height: 80%;
     width: 100%;
+}
+.hostInfo {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.1vw;
+    color: #ffebb0;
 }
