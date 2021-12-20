@@ -1,0 +1,22 @@
+.orderCardArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.orderCard {
+    display: flex;
+    flex-direction: column;
+    height: 10vh;
+    width: 90%;
+    background-color: #d7004a;
+    border-radius: 1vw;
+}
+.restaurantInfo {
+    width: 60%;
+}
+.guestInfo {
+    width: 100%;
+}
+.orderInfo {
+    width: 100%;
+}

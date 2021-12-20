@@ -5,8 +5,13 @@
 <div id="wrapper">
     <div id="content-wrapper" class="d-flex flex-column">
         <th:block th:replace="layout/fragments/Top :: topFragment"></th:block>
-        <div id="content">
-            <th:block layout:fragment="content"></th:block>
+        <div class="flex fdr jcfs">
+            <div class="side">
+                <th:block th:replace="layout/fragments/Side :: sideFragment"></th:block>
+            </div>
+            <div class="body">
+                <th:block layout:fragment="content"></th:block>
+            </div>
         </div>
         <th:block th:replace="layout/fragments/Footer :: footerFragment"></th:block>
     </div>

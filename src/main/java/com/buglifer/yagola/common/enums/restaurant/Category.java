@@ -19,6 +19,7 @@ public enum Category {
     , SCHOOL("분식")
     , CAFE("카페/디저트")
     , MART("마트/편의점")
+    , CHICKEN("치킨")
     , ETC("기타");
     private String name;
 }

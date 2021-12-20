@@ -5,6 +5,9 @@
 .ffd {
     font-family: 'Do Hyeon', sans-serif;
 }
+.ffn {
+    font-family: 'Noto Sans KR', sans-serif;
+}
 .fs20 {
     font-size: 20px;
 }
@@ -19,6 +22,9 @@
 }
 .fs100 {
     font-size: 100px;
+}
+.fs10vw {
+    font-size: 1.0vw;
 }
 .fs12vw {
     font-size: 1.2vw;
@@ -79,6 +85,9 @@
 .jcsb {
     justify-content: space-between;
 }
+.jcfs {
+    justify-content: flex-start;
+}
 .jcfe {
     justify-content: flex-end;
 }
@@ -88,16 +97,28 @@
 */
 
 .bs0 {
-    border: 0px solid;
+    border: 0 solid;
 }
 .bs1 {
     border: 1px solid;
+}
+.br14 {
+    border-radius: 14px;
 }
 .br24 {
     border-radius: 24px;
 }
 .br60 {
     border-radius: 60px;
+}
+.br24u {
+    border-radius: 24px 24px 0 0;
+}
+.br14d {
+    border-radius: 0 0 14px 14px;
+}
+.br24d {
+    border-radius: 0 0 24px 24px;
 }
 
 /*
@@ -115,6 +136,9 @@
 }
 .h20v {
     height: 20vh;
+}
+.h22v {
+    height: 22vh;
 }
 .h60 {
     height: 60px;
@@ -144,6 +168,9 @@
 }
 .w15vw {
     width: 15vw;
+}
+.w25vw {
+    width: 25vw;
 }
 .w50vw {
     width: 50vw;
@@ -179,7 +206,9 @@
 /*
     Gap, 간격 관련
 */
-
+.g1v {
+    gap: 1vh;
+}
 .g3pc {
     gap: 3%
 }
@@ -194,6 +223,12 @@
     Margin 관련
 */
 
+.m10 {
+    margin: 10px;
+}
+.m20 {
+    margin: 20px;
+}
 .ml20 {
     margin-left: 20px;
 }
@@ -206,11 +241,17 @@
 .mr5vw {
     margin-right: 5vw;
 }
+.mb5 {
+    margin-bottom: 5px;
+}
 .mb10 {
     margin-bottom: 10px;
 }
 .mb20 {
     margin-bottom: 20px;
+}
+.mt5 {
+    margin-top: 5px;
 }
 .mt10 {
     margin-top: 10px;
@@ -220,4 +261,34 @@
 }
 .mt20 {
     margin-top: 20px;
+}
+
+/*
+    공통 Layout 관련
+*/
+
+.milestone {
+    margin: 0 50px 5px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.2vw;
+}
+.main {
+    margin: 20px 30px 10px;
+}
+.body {
+    width: 90%;
+}
+.side {
+    width: 10%;
+}
+.sidebar {
+    margin: 10px 20px 10px;
+    font-family: 'Noto Sans KR', sans-serif !important;
+}
+.nav-pills .nav-link.active {
+    background-color: #d7004a !important;
+}
+.selected {
+    border-radius: 5px;
+    border: 3px solid #2195e1;
 }

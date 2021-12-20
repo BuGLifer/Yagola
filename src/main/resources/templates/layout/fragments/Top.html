@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="topFragment">
-  <div class="flex mc bs0 br24 h20v jcsa aic ffd ml20 mr20 mt20 mb20">
+  <div class="flex mc bs0 br24 h22v jcsa aic ffd m20">
     <div class="flex w15vw jcc h10v fdc aic" onclick="location.href='/'">
       <i class="fab fa-yammer fs6vw"></i>
       <span class="fs25vw cw">골라</span>
@@ -9,80 +9,89 @@
     <div class="flex w70vw jcc fdc aic mt15">
       <div class="flex h10v aic jcc bs0 br24 w70vw bgnw mb10">
         <div class="flex fdr jcsb aic mr10 w10vw">
-          <div>
+          <div id="randomSearch" onclick="clickRandomSearch();">
             <i class="fas fa-dice fs4vw"></i>
           </div>
           <div class="fdc">
             <div class="fdr">
-              <label class="form-check-label" for="f">
+              <label class="form-check-label" for="time">
                 <i class="fas fa-stopwatch"></i>
               </label>
-              <input class="form-check-input" type="checkbox" value="" id="f" checked>
+              <input class="form-check-input" type="checkbox" id="time" checked>
             </div>
             <div class="fdr">
-              <label class="form-check-label" for="fle">
+              <label class="form-check-label" for="count">
                 <i class="fas fa-sort-amount-up-alt"></i>
               </label>
-              <input class="form-check-input" type="checkbox" value="" id="fle" checked>
+              <input class="form-check-input" type="checkbox" id="count" checked>
             </div>
           </div>
         </div>
-        <form class="d-flex h6v w55vw">
-          <input class="form-control me-2 w50vw" type="search" placeholder="고르기" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit"><i class="fas fa-mouse"></i></button>
-        </form>
+        <div class="d-flex h6v w55vw">
+          <input class="form-control me-2 w50vw" id="searchBar" type="search" placeholder="고르기" aria-label="Search">
+          <button class="btn btn-outline-success" onclick="search();"><i class="fas fa-mouse"></i></button>
+        </div>
       </div>
-      <div class="flex h6v fdr w70vw jcsa mt10 mb10">
-        <div class="flex fdc jcc aic">
+      <div class="flex h6v fdr w70vw jcsa mt10 mb10" id="categoryList">
+        <div class="flex fdc jcc aic" id="korea" onclick="selectSearchOption(this);">
           <i class="fas fa-pepper-hot fs22vw"></i>
           <span class="fs12vw cw">한식</span>
         </div>
-        <div class="flex fdc jcc aic">
+        <div class="flex fdc jcc aic" id="china" onclick="selectSearchOption(this);">
           <i class="fas fa-yin-yang fs22vw"></i>
           <span class="fs12vw cw">중식</span>
         </div>
-        <div class="flex fdc jcc aic">
+        <div class="flex fdc jcc aic" id="japan" onclick="selectSearchOption(this);">
           <i class="fas fa-fish fs22vw"></i>
           <span class="fs12vw cw">일식</span>
         </div>
-        <div class="flex fdc jcc aic">
+        <div class="flex fdc jcc aic" id="western" onclick="selectSearchOption(this);">
           <i class="fas fa-pizza-slice fs22vw"></i>
           <span class="fs12vw cw">양식</span>
         </div>
-        <div class="flex fdc jcc aic">
+        <div class="flex fdc jcc aic" id="chicken" onclick="selectSearchOption(this);">
+          <i class="fas fa-drumstick-bite fs22vw"></i>
+          <span class="fs12vw cw">치킨</span>
+        </div>
+        <div class="flex fdc jcc aic" id="alone" onclick="selectSearchOption(this);">
           <i class="fas fa-male fs22vw"></i>
           <span class="fs12vw cw">1인분</span>
         </div>
-        <div class="flex fdc jcc aic">
+        <div class="flex fdc jcc aic" id="franchise" onclick="selectSearchOption(this);">
           <i class="fas fa-building fs22vw"></i>
           <span class="fs12vw cw">프랜차이즈</span>
         </div>
-        <div class="flex fdc jcc aic">
+        <div class="flex fdc jcc aic" id="night" onclick="selectSearchOption(this);">
           <i class="fas fa-cloud-moon fs22vw"></i>
           <span class="fs12vw cw">야식</span>
         </div>
-        <div class="flex fdc jcc aic">
+        <div class="flex fdc jcc aic" id="pig" onclick="selectSearchOption(this);">
           <i class="fas fa-piggy-bank fs22vw"></i>
           <span class="fs12vw cw">족발/보쌈</span>
         </div>
-        <div class="flex fdc jcc aic">
+        <div class="flex fdc jcc aic" id="school" onclick="selectSearchOption(this);">
           <i class="fas fa-school fs22vw"></i>
           <span class="fs12vw cw">분식</span>
         </div>
-        <div class="flex fdc jcc aic">
+        <div class="flex fdc jcc aic" id="cafe" onclick="selectSearchOption(this);">
           <i class="fas fa-coffee fs22vw"></i>
-          <span class="fs12vw cw">디저트</span>
+          <span class="fs12vw cw">카페</span>
         </div>
-        <div class="flex fdc jcc aic">
+        <div class="flex fdc jcc aic" id="mart" onclick="selectSearchOption(this);">
           <i class="fas fa-store fs22vw"></i>
           <span class="fs12vw cw">마트</span>
         </div>
       </div>
     </div>
-    <div class="flex w15vw jcc h10v fdc aic" onclick="location.href='/gola'">
+    <div class="flex w15vw jcc h10v fdc aic" onclick="location.href='/invite'">
       <i class="fas fa-motorcycle fs6vw"></i>
-      <span class="fs25vw cw">주문</span>
+      <span class="fs25vw cw">모집</span>
     </div>
   </div>
+  <div class="milestone">
+    <span><i class="fab fa-yammer"></i>골라</span>
+    <span id="milestone"></span>
+  </div>
+  <script th:src="@{/js/top.js}"></script>
 </th:block>
 </html>

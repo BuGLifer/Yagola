@@ -3,15 +3,11 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="@{/layout/layout}">
 <th:block layout:fragment="content">
-    <div class="milestone">
-        <span><i class="fab fa-yammer ml10"></i></span>
-        <span class="ml10">골라</span>
-    </div>
     <div class="main">
         <a href="javascript:callAPI('GET', 'http://localhost/comments', '');"> test</a>
         <button type="button" class="btn btn-primary">Primary</button>
         <a class="fs20"> test<i class="fab fa-accusoft"></i></a>
     </div>
-    <script th:src="@{/js/golaJS.js}"></script>
+    <script th:src="@{/js/gola.js}"></script>
 </th:block>
 </html>

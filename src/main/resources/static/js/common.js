@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", function() {
+});
 const callAPI = function(method, url, body, callBack) {
     console.log("[callAPI] START");
     console.log("[callAPI] Method : " + method);
@@ -16,4 +18,13 @@ const callAPI = function(method, url, body, callBack) {
     xhr.open(method, url)
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(body));
+};
+
+const setMilestonePath = function(path) {
+    document.getElementById("milestone").textContent = path;
+};
+
+const getQueryString = function() {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    return Object.fromEntries(urlSearchParams.entries());
 };
