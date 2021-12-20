@@ -1,8 +1,10 @@
 package com.buglifer.yagola.common.okhttp;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public enum HttpMethods {
     GET("get")
     , POST("post")
@@ -12,8 +14,4 @@ public enum HttpMethods {
     , OPTIONS("options");
 
     private String name;
-
-    HttpMethods(String name) {
-        this.name = name;
-    }
 }
