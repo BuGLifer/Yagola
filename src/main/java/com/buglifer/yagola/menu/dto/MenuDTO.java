@@ -22,6 +22,7 @@ public class MenuDTO extends CommonDTO {
             , builderMethodName = "fromEntity"
     )
     private MenuDTO(MenuEntity entity) {
+        setSeq(entity.getSeq());
         setName(entity.getName());
         setPrice(entity.getPrice());
         setImgLink(entity.getImgLink());

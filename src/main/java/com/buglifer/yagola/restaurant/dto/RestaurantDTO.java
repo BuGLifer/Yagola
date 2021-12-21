@@ -3,6 +3,7 @@ package com.buglifer.yagola.restaurant.dto;
 import com.buglifer.yagola.common.domain.RestaurantEntity;
 import com.buglifer.yagola.common.dto.CommonDTO;
 import com.buglifer.yagola.common.enums.restaurant.Category;
+import com.buglifer.yagola.menu.dto.MenuDTO;
 import com.buglifer.yagola.order.dto.OrderDTO;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class RestaurantDTO extends CommonDTO {
     private String imgLink;
     private Category category;
     private List<OrderDTO> orders;
+    private List<MenuDTO> menus;
 
     @Builder(
             builderClassName = "entity"
@@ -40,6 +42,12 @@ public class RestaurantDTO extends CommonDTO {
         category = entity.getCategory();
         orders = entity.getOrders().stream().map(
                 e -> OrderDTO
+                    .fromEntity()
+                    .entity(e)
+                    .build()
+        ).collect(Collectors.toList());
+        menus = entity.getMenus().stream().map(
+                e -> MenuDTO
                     .fromEntity()
                     .entity(e)
                     .build()
