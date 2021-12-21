@@ -13,4 +13,5 @@ public class RestaurantResponse {
     private float review_avg;
     private String lat;
     private String lng;
+    private String logo_url;
 }

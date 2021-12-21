@@ -6,5 +6,6 @@ import lombok.ToString;
 @Getter
 @ToString
 public class TotalViewResponse {
+    private YogiyoPagination pagination;
     private RestaurantResponse[] restaurants;
 }
