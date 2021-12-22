@@ -6,12 +6,14 @@ import com.buglifer.yagola.restaurant.repository.RestaurantRepository;
 import com.buglifer.yagola.restaurant.service.RestaurantService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
 import java.util.Optional;
 
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("restaurants")
 @RestController
