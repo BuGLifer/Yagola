@@ -13,6 +13,7 @@ import lombok.*;
 public class MenuDTO extends CommonDTO {
 
     private String name;
+    private String description;
     private long price;
     private String imgLink;
     private RestaurantDTO restaurant;
@@ -23,9 +24,10 @@ public class MenuDTO extends CommonDTO {
     )
     private MenuDTO(MenuEntity entity) {
         setSeq(entity.getSeq());
-        setName(entity.getName());
-        setPrice(entity.getPrice());
-        setImgLink(entity.getImgLink());
+        name = entity.getName();
+        price = entity.getPrice();
+        imgLink = entity.getImgLink();
+        description = entity.getDescription();
         restaurant = RestaurantDTO
                 .initRestaurant()
                 .seq(entity.getRestaurant().getSeq())
