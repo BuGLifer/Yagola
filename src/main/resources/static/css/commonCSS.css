@@ -1,3 +1,294 @@
+/*
+    Font 관련
+*/
+
+.ffd {
+    font-family: 'Do Hyeon', sans-serif;
+}
+.ffn {
+    font-family: 'Noto Sans KR', sans-serif;
+}
 .fs20 {
     font-size: 20px;
+}
+.fs24 {
+    font-size: 24px;
+}
+.fs30 {
+    font-size: 30px;
+}
+.fs35 {
+    font-size: 35px;
+}
+.fs100 {
+    font-size: 100px;
+}
+.fs10vw {
+    font-size: 1.0vw;
+}
+.fs12vw {
+    font-size: 1.2vw;
+}
+.fs22vw {
+    font-size: 2.2vw;
+}
+.fs25vw {
+    font-size: 2.5vw;
+}
+.fs4vw {
+    font-size: 4vw;
+}
+.fs6vw {
+    font-size: 6vw;
+}
+
+/*
+    색상 관련
+*/
+
+.cw {
+    color: white;
+}
+
+.bgw {
+    background: white;
+}
+.bgnw {
+    background: navajowhite;
+}
+.mc {
+    background-color: #d7004a;
+}
+
+/*
+    Flex, 정렬 관련
+*/
+
+.flex {
+    display: flex;
+}
+.fdr {
+    flex-direction: row;
+}
+.fdc {
+    flex-direction: column;
+}
+.aic {
+    align-items: center;
+}
+.jcc {
+    justify-content: center;
+}
+.jcsa {
+    justify-content: space-around;
+}
+.jcsb {
+    justify-content: space-between;
+}
+.jcfs {
+    justify-content: flex-start;
+}
+.jcfe {
+    justify-content: flex-end;
+}
+
+/*
+    Border 관련
+*/
+
+.bs0 {
+    border: 0 solid;
+}
+.bs1 {
+    border: 1px solid;
+}
+.br14 {
+    border-radius: 14px;
+}
+.br24 {
+    border-radius: 24px;
+}
+.br60 {
+    border-radius: 60px;
+}
+.br24u {
+    border-radius: 24px 24px 0 0;
+}
+.br14d {
+    border-radius: 0 0 14px 14px;
+}
+.br24d {
+    border-radius: 0 0 24px 24px;
+}
+
+/*
+    Height 관련
+*/
+
+.h3v {
+    height: 3vh;
+}
+.h10v {
+    height: 10vh;
+}
+.h6v {
+    height: 6vh;
+}
+.h20v {
+    height: 20vh;
+}
+.h22v {
+    height: 22vh;
+}
+.h60 {
+    height: 60px;
+}
+.h70 {
+    height: 70px;
+}
+.h80 {
+    height: 80px;
+}
+.h100 {
+    height: 100px;
+}
+.h120 {
+    height: 120px;
+}
+.h150 {
+    height: 150px;
+}
+
+/*
+    Width 관련
+*/
+
+.w10vw {
+    width: 10vw;
+}
+.w15vw {
+    width: 15vw;
+}
+.w25vw {
+    width: 25vw;
+}
+.w50vw {
+    width: 50vw;
+}
+.w55vw {
+    width: 55vw;
+}
+.w60vw {
+    width: 60vw;
+}
+.w70vw {
+    width: 70vw;
+}
+.w20pc {
+    width: 20%;
+}
+.w30pc {
+    width: 30%;
+}
+.w50pc {
+    width: 50%;
+}
+.w60pc {
+    width: 60%;
+}
+.w90pc {
+    width: 90%;
+}
+.w100pc {
+    width: 100%;
+}
+
+/*
+    Gap, 간격 관련
+*/
+.g1v {
+    gap: 1vh;
+}
+.g3pc {
+    gap: 3%
+}
+.g20 {
+    gap: 20px;
+}
+.g30 {
+    gap: 30px;
+}
+
+/*
+    Margin 관련
+*/
+
+.m10 {
+    margin: 10px;
+}
+.m20 {
+    margin: 20px;
+}
+.ml20 {
+    margin-left: 20px;
+}
+.mr10 {
+    margin-right: 10px;
+}
+.mr20 {
+    margin-right: 20px;
+}
+.mr5vw {
+    margin-right: 5vw;
+}
+.mb5 {
+    margin-bottom: 5px;
+}
+.mb10 {
+    margin-bottom: 10px;
+}
+.mb20 {
+    margin-bottom: 20px;
+}
+.mt5 {
+    margin-top: 5px;
+}
+.mt10 {
+    margin-top: 10px;
+}
+.mt15 {
+    margin-top: 15px;
+}
+.mt20 {
+    margin-top: 20px;
+}
+
+/*
+    공통 Layout 관련
+*/
+
+.milestone {
+    margin: 0 50px 5px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.2vw;
+}
+.main {
+    margin: 20px 30px 10px;
+}
+.body {
+    width: 90%;
+}
+.side {
+    width: 10%;
+}
+.sidebar {
+    margin: 10px 20px 10px;
+    font-family: 'Noto Sans KR', sans-serif !important;
+}
+.nav-pills .nav-link.active {
+    background-color: #d7004a !important;
+}
+.selected {
+    border-radius: 5px;
+    border: 3px solid #2195e1;
 }

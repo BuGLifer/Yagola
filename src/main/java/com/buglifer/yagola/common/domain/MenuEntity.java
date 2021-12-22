@@ -61,7 +61,10 @@ public class MenuEntity extends CommonEntity {
         }
     }
 
-    @Builder(builderMethodName = "initMenu")
+    @Builder(
+            builderClassName = "init"
+            , builderMethodName = "initMenu"
+    )
     public MenuEntity(MenuDTO dto) {
         seq = dto.getSeq();
         name = dto.getName();

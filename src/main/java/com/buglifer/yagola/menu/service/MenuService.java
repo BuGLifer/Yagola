@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Slf4j
@@ -18,7 +19,7 @@ public class MenuService {
 
     private final MenuRepository menuRepository;
 
-    public Page<MenuDTO> findAllMenu(MenuSearch search) {
+    public Page<MenuDTO> findMenuBySearch(MenuSearch search) {
         Page<MenuEntity> menuEntityList;
         if (search.getRestSeq() == 0) {
             menuEntityList = menuRepository.findAll(search.toPageable());
@@ -28,15 +29,19 @@ public class MenuService {
         return menuEntityList
                 .map(
                         e -> MenuDTO
-                            .fromMenuEntity()
-                            .menuEntity(e)
+                            .fromEntity()
+                            .entity(e)
                             .build()
                 );
     }
 
-    public MenuDTO findMenu(long menuSeq) {
-        Optional<MenuEntity> optionalMenuEntity = menuRepository.findById(menuSeq);
-        return optionalMenuEntity.map(MenuDTO::new).orElseGet(MenuDTO::new);
+    public MenuDTO findMenuBySeq(long seq) {
+        Optional<MenuEntity> optionalMenuEntity = menuRepository.findById(seq);
+        if(!optionalMenuEntity.isPresent()) throw new EntityNotFoundException("해당 메뉴가 존재하지 않습니다.");
+        return MenuDTO
+                .fromEntity()
+                .entity(optionalMenuEntity.get())
+                .build();
     }
 
     public MenuDTO saveMenu(MenuDTO menuDTO) {
@@ -44,16 +49,15 @@ public class MenuService {
                 .initMenu()
                 .dto(menuDTO)
                 .build();
-        return new MenuDTO(menuRepository.save(menuEntity));
+        return MenuDTO
+                .fromEntity()
+                .entity(menuRepository.save(menuEntity))
+                .build();
     }
 
-    public long removeMenu(long menuSeq) {
+    public void removeMenu(long menuSeq) {
         Optional<MenuEntity> menuEntity = menuRepository.findById(menuSeq);
-        if (!menuEntity.isPresent()) {
-            log.error("존재 하지 않는 메뉴 입니다.");
-            return -1;
-        }
+        if (!menuEntity.isPresent()) throw new EntityNotFoundException("해당 메뉴가 존재하지 않습니다.");
         menuRepository.delete(menuEntity.get());
-        return menuSeq;
     }
 }

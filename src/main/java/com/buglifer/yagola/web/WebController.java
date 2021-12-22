@@ -8,9 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class WebController {
 
-    @GetMapping("/main")
+    @GetMapping("")
     public String getMain() {
         return "web/Main";
     }
+
+    @GetMapping("invite")
+    public String getInvite() { return "web/Invite"; }
+
+    @GetMapping("gola")
+    public String getGola() { return "web/Gola"; }
 
 }

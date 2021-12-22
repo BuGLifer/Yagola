@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="sideFragment">
+<div class="sidebar">
+  <ul class="nav nav-pills flex-column g1v">
+    <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">
+      <a class="nav-link active" href="#">메뉴1</a>
+    </li>
+    <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">
+      <a class="nav-link active" href="#">메뉴2</a>
+    </li>
+    <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">
+      <a class="nav-link active" href="#">메뉴3</a>
+    </li>
+    <li class="nav-item dropdown" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">
+      <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">드랍다운메뉴</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Separated link</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</th:block>
+</html>

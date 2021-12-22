@@ -75,20 +75,23 @@ public class OrderEntity extends CommonEntity {
     }
 
     @Builder(
-            builderClassName = "initOrder"
-            , builderMethodName = "initOrder"
+            builderClassName = "initSeq"
+            , builderMethodName = "initOrderSeq"
     )
     public OrderEntity(long seq) {
         this.seq = seq;
     }
 
     @Builder(
-            builderClassName = "saveOrder"
-            , builderMethodName = "saveOrder"
+            builderClassName = "init"
+            , builderMethodName = "initOrder"
     )
     public OrderEntity(OrderDTO dto) {
         seq = dto.getSeq();
-        status = Status.ONLINE;
+        status = dto.getStatus();
+        offlineTime = dto.getOfflineTime();
+        orderTime = dto.getOrderTime();
+        arrivalTime = dto.getArrivalTime();
         if (dto.getRestaurant() != null) {
             restaurant = RestaurantEntity
                     .initRestSeq()

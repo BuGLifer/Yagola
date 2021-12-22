@@ -1,0 +1,73 @@
+.orderCardArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.orderCard {
+    display: flex;
+    flex-direction: column;
+    height: 12vh;
+    width: 90%;
+    background-color: #d7004a;
+    border-radius: 1vw;
+    margin-bottom: 2vh;
+}
+.orderCard span {
+    margin-left: 5px;
+}
+.guestInfo {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1vw;
+    margin-bottom: 5px;
+    margin-left: -1vw;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.1vw;
+    color: white;
+}
+.orderInfo {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.hostInfo {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.1vw;
+    color: #ffebb0;
+}
+.restaurantInfo {
+    height: 100%;
+    width: 60%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 2.0vw;
+    color: white;
+}
+.orderStatusInfo {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    margin-right: 1vw;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.3vw;
+    color: white;
+}
+.orderStatus {
+
+}
+.orderTime {
+    margin-top: 0.5vh;
+    font-size: 1.1vw;
+}

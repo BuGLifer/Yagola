@@ -1,3 +1,3 @@
 document.addEventListener("DOMContentLoaded", function() {
-    alert("amin");
+    setMilestonePath(' > 골라');
 });

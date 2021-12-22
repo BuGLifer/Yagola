@@ -3,7 +3,7 @@ package com.buglifer.yagola.comment.controller;
 import com.buglifer.yagola.comment.dto.CommentDTO;
 import com.buglifer.yagola.comment.search.CommentSearch;
 import com.buglifer.yagola.comment.service.CommentService;
-import lombok.AllArgsConstructor;
+import com.buglifer.yagola.user.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -20,7 +20,7 @@ public class CommentController {
 
     @GetMapping("")
     public ResponseEntity<Page<CommentDTO>> getComments(CommentSearch search) {
-        return ResponseEntity.ok().body(commentService.findComments(search));
+        return ResponseEntity.ok().body(commentService.findCommentBySearch(search));
     }
 
     @GetMapping("{seq}")
@@ -29,7 +29,25 @@ public class CommentController {
     }
 
     @PostMapping("")
-    public ResponseEntity<CommentDTO> postCommentDTO(@RequestBody CommentDTO commentDTO) {
+    public ResponseEntity<CommentDTO> postComment(@RequestBody CommentDTO commentDTO) {
         return ResponseEntity.ok().body(commentService.saveComment(commentDTO));
+    }
+
+    @PatchMapping("{seq}")
+    public ResponseEntity<CommentDTO> patchComment(@PathVariable(name = "seq") long seq, @RequestBody CommentDTO commentDTO) {
+        if(commentDTO.getSeq() != seq) commentDTO.setSeq(seq);
+        return ResponseEntity.ok().body(commentService.updateComment(commentDTO));
+    }
+
+    @DeleteMapping("{seq}")
+    public ResponseEntity deleteComment(@PathVariable(name = "seq") long seq, @RequestBody UserDTO userDTO) {
+        commentService.deleteComment(
+                CommentDTO
+                        .forDelete()
+                        .seq(seq)
+                        .userDTO(userDTO)
+                        .build()
+        );
+        return ResponseEntity.noContent().build();
     }
 }

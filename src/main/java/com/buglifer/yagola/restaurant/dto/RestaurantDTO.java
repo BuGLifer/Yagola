@@ -3,6 +3,7 @@ package com.buglifer.yagola.restaurant.dto;
 import com.buglifer.yagola.common.domain.RestaurantEntity;
 import com.buglifer.yagola.common.dto.CommonDTO;
 import com.buglifer.yagola.common.enums.restaurant.Category;
+import com.buglifer.yagola.menu.dto.MenuDTO;
 import com.buglifer.yagola.order.dto.OrderDTO;
 import lombok.*;
 
@@ -22,12 +23,13 @@ public class RestaurantDTO extends CommonDTO {
     private String imgLink;
     private Category category;
     private List<OrderDTO> orders;
+    private List<MenuDTO> menus;
 
     @Builder(
             builderClassName = "entity"
             , builderMethodName = "fromEntity"
     )
-    public RestaurantDTO(RestaurantEntity entity) {
+    private RestaurantDTO(RestaurantEntity entity) {
         if(entity == null) {
             return;
         }
@@ -38,7 +40,18 @@ public class RestaurantDTO extends CommonDTO {
         tel = entity.getTel();
         imgLink = entity.getImgLink();
         category = entity.getCategory();
-        orders = entity.getOrders().stream().map(e -> new OrderDTO(e)).collect(Collectors.toList());
+        orders = entity.getOrders().stream().map(
+                e -> OrderDTO
+                    .fromEntity()
+                    .entity(e)
+                    .build()
+        ).collect(Collectors.toList());
+        menus = entity.getMenus().stream().map(
+                e -> MenuDTO
+                    .fromEntity()
+                    .entity(e)
+                    .build()
+        ).collect(Collectors.toList());
     }
 
     @Builder
@@ -50,6 +63,14 @@ public class RestaurantDTO extends CommonDTO {
         this.imgLink = imgLink;
         this.category = category;
     }
+  
+    @Builder(
+            builderClassName = "init"
+            , builderMethodName = "initRestaurant"
+    )
+    private RestaurantDTO(long seq) {
+        setSeq(seq);
+    }
 
     public void setOrder(OrderDTO orderDTO) {
         if(this.orders.isEmpty()) {
@@ -57,10 +78,4 @@ public class RestaurantDTO extends CommonDTO {
         }
         orders.add(orderDTO);
     }
-
-    @Builder(
-            builderClassName = "initRestDTOSeq"
-            , builderMethodName = "initRestDTOSeq"
-    )
-    public RestaurantDTO(long seq) { setSeq(seq); }
 }

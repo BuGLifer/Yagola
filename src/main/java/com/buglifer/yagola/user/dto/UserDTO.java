@@ -1,5 +1,6 @@
 package com.buglifer.yagola.user.dto;
 
+import com.buglifer.yagola.common.domain.UserEntity;
 import com.buglifer.yagola.common.dto.CommonDTO;
 import lombok.*;
 
@@ -12,8 +13,22 @@ public class UserDTO extends CommonDTO {
     private String nickName;
     private String ip;
 
-    @Builder(builderMethodName = "initUser")
+    @Builder(
+            builderClassName = "init"
+            , builderMethodName = "initUser"
+    )
     public UserDTO(long seq) {
         setSeq(seq);
+    }
+
+    @Builder(
+            builderClassName = "entity"
+            , builderMethodName = "fromEntity"
+    )
+    private UserDTO(UserEntity entity) {
+        setSeq(entity.getSeq());
+        setCreatedTime(entity.getCreatedTime());
+        nickName = entity.getNickName();
+        ip = entity.getIp();
     }
 }

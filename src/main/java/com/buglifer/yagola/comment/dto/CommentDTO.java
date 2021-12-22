@@ -33,14 +33,36 @@ public class CommentDTO extends PostDTO {
         if(entity.getComment() != null) {
             setComment(entity.getComment());
         }
+        user = UserDTO
+                .fromEntity()
+                .entity(entity.getUser())
+                .build();
+        order = OrderDTO
+                .fromEntity()
+                .entity(entity.getOrder())
+                .build();
     }
 
     @Builder(
-            builderClassName = "dto"
+            builderClassName = "init"
             , builderMethodName = "initComment"
     )
     private CommentDTO(long seq) {
         setSeq(seq);
+    }
+
+    @Builder(
+            builderClassName = "delete"
+            , builderMethodName = "forDelete"
+    )
+    private CommentDTO(long seq, UserDTO userDTO) {
+        setSeq(seq);
+        setUser(
+                UserDTO
+                .initUser()
+                .seq(userDTO.getSeq())
+                .build()
+        );
     }
 
 }

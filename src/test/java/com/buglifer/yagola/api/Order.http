@@ -1,0 +1,27 @@
+### 주문 생성
+POST http://localhost/orders
+Content-Type: application/json
+
+{
+  "restaurant" : {
+    "seq": 2
+  }
+}
+
+### 주문 조회
+GET http://localhost/orders/1
+
+### 주문 삭제
+DELETE http://localhost/orders/1
+
+### 주문 수정
+PATCH http://localhost/orders/6
+Content-Type: application/json
+
+{
+  "seq": 6,
+  "status": "ORDER",
+  "restaurant": {
+    "seq": 1
+  }
+}
