@@ -25,3 +25,11 @@ Content-Type: application/json
     "seq": 1
   }
 }
+
+###
+DELETE http://localhost/comments/3
+Content-Type: application/json
+
+{
+  "seq": 1
+}
