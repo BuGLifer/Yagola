@@ -1,6 +1,7 @@
 package com.buglifer.yagola.common.batch.service;
 
 import com.buglifer.yagola.common.batch.response.yogiyo.MenuTypeResponse;
+import com.buglifer.yagola.common.batch.response.yogiyo.TotalRestaurantResponse;
 import com.buglifer.yagola.common.batch.response.yogiyo.TotalViewResponse;
 import com.buglifer.yagola.common.domain.MenuEntity;
 import com.buglifer.yagola.common.domain.RestaurantEntity;
@@ -18,7 +19,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Headers;
 import okhttp3.Response;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -41,7 +44,7 @@ public class BatchService {
     }
 
 
-    private TotalViewResponse requestTotalView() throws IOException {
+    private TotalRestaurantResponse requestTotalRestaurant() throws IOException {
         String url = "https://www.yogiyo.co.kr/api/v1/restaurants-geo/?items=60&lat=37.563011615886&lng=126.835012463538&order=rank&page=0&search=";
         Response response = OKHttp.okHttpRequest(url
                 , new Headers
@@ -52,11 +55,11 @@ public class BatchService {
                         .build()
                 , null, HttpMethods.GET);
         if(!response.isSuccessful()) {
-            return new TotalViewResponse();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "[Yogiyo] Restaurant API Request에 실패하였습니다.");
         }
-        TotalViewResponse result = new Moshi.Builder()
+        TotalRestaurantResponse result = new Moshi.Builder()
                 .build()
-                .adapter(TotalViewResponse.class)
+                .adapter(TotalRestaurantResponse.class)
                 .fromJson(response.body().source());
         response.body().close();
         return result;

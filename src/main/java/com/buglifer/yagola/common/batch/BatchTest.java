@@ -2,11 +2,13 @@ package com.buglifer.yagola.common.batch;
 
 import com.buglifer.yagola.common.batch.response.yogiyo.MenuTypeResponse;
 import com.buglifer.yagola.common.batch.response.yogiyo.TotalViewResponse;
+import com.buglifer.yagola.common.batch.service.BatchService;
 import com.buglifer.yagola.common.okhttp.HttpMethods;
 import com.buglifer.yagola.common.okhttp.OKHttp;
 import com.buglifer.yagola.common.okhttp.header.YogiyoHeader;
 import com.squareup.moshi.Moshi;
 import com.squareup.moshi.Types;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Headers;
 import okhttp3.Response;
@@ -21,11 +23,14 @@ import java.util.List;
 
 @Slf4j
 @RequestMapping("batch")
+@RequiredArgsConstructor
 @RestController
 public class BatchTest {
 
-    @GetMapping("test")
-    public String test() throws IOException {
+    private final BatchService batchService;
+
+    @GetMapping("restaurants")
+    public String getRestaurants() throws IOException {
       return requestMenuView(1018186);
     };
 
