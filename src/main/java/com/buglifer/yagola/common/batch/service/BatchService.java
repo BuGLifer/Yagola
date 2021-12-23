@@ -1,16 +1,13 @@
 package com.buglifer.yagola.common.batch.service;
 
+import com.buglifer.yagola.common.batch.enums.yogiyo.YogiyoAPI;
 import com.buglifer.yagola.common.batch.response.yogiyo.MenuTypeResponse;
 import com.buglifer.yagola.common.batch.response.yogiyo.TotalRestaurantResponse;
-import com.buglifer.yagola.common.batch.response.yogiyo.TotalViewResponse;
-import com.buglifer.yagola.common.domain.MenuEntity;
 import com.buglifer.yagola.common.domain.RestaurantEntity;
 import com.buglifer.yagola.common.okhttp.HttpMethods;
 import com.buglifer.yagola.common.okhttp.OKHttp;
 import com.buglifer.yagola.common.okhttp.header.YogiyoHeader;
-import com.buglifer.yagola.menu.dto.MenuDTO;
 import com.buglifer.yagola.menu.repository.MenuRepository;
-import com.buglifer.yagola.menu.search.MenuSearch;
 import com.buglifer.yagola.restaurant.dto.RestaurantDTO;
 import com.buglifer.yagola.restaurant.repository.RestaurantRepository;
 import com.squareup.moshi.Moshi;
@@ -19,9 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Headers;
 import okhttp3.Response;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -43,10 +38,12 @@ public class BatchService {
                 .build()).collect(Collectors.toList());
     }
 
+    public TotalRestaurantResponse getYogiyoTotalRestaurant() throws IOException {
+        return requestTotalRestaurant(0);
+    }
 
-    private TotalRestaurantResponse requestTotalRestaurant() throws IOException {
-        String url = "https://www.yogiyo.co.kr/api/v1/restaurants-geo/?items=60&lat=37.563011615886&lng=126.835012463538&order=rank&page=0&search=";
-        Response response = OKHttp.okHttpRequest(url
+    private TotalRestaurantResponse requestTotalRestaurant(int page) throws IOException {
+        Response response = OKHttp.okHttpRequest(YogiyoAPI.TOTAL_RESTAURANT.getUrl()
                 , new Headers
                         .Builder()
                         .add(YogiyoHeader.APISECRET.getHeader(), "fe5183cc3dea12bd0ce299cf110a75a2")
@@ -54,9 +51,6 @@ public class BatchService {
                         .add(YogiyoHeader.CONTENTTYPE.getHeader(), "application/x-www-form-urlencoded")
                         .build()
                 , null, HttpMethods.GET);
-        if(!response.isSuccessful()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "[Yogiyo] Restaurant API Request에 실패하였습니다.");
-        }
         TotalRestaurantResponse result = new Moshi.Builder()
                 .build()
                 .adapter(TotalRestaurantResponse.class)
