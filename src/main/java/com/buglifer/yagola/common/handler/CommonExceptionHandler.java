@@ -1,6 +1,7 @@
 package com.buglifer.yagola.common.handler;
 
 import com.buglifer.yagola.common.dto.ExceptionResponse;
+import org.springframework.boot.json.JsonParseException;
 import org.springframework.expression.AccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,16 @@ public class CommonExceptionHandler {
 
     @ExceptionHandler(HttpServerErrorException.class)
     public ResponseEntity<ExceptionResponse> handleHttpServerErrorException(HttpServerErrorException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                ExceptionResponse
+                        .initException()
+                        .httpStatus(HttpStatus.BAD_REQUEST)
+                        .exception(e)
+                        .build());
+    }
+
+    @ExceptionHandler(JsonParseException.class)
+    public ResponseEntity<ExceptionResponse> handleJsonParseException(JsonParseException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 ExceptionResponse
                         .initException()

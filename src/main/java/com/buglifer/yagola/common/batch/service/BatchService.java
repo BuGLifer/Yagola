@@ -16,7 +16,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Headers;
 import okhttp3.Response;
+import org.springframework.boot.json.JsonParseException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -38,11 +40,12 @@ public class BatchService {
                 .build()).collect(Collectors.toList());
     }
 
-    public TotalRestaurantResponse getYogiyoTotalRestaurant() throws IOException {
+    public TotalRestaurantResponse getYogiyoTotalRestaurant() {
         return requestTotalRestaurant(0);
     }
 
-    private TotalRestaurantResponse requestTotalRestaurant(int page) throws IOException {
+    private TotalRestaurantResponse requestTotalRestaurant(int page) {
+        TotalRestaurantResponse result = null;
         Response response = OKHttp.okHttpRequest(YogiyoAPI.TOTAL_RESTAURANT.getUrl()
                 , new Headers
                         .Builder()
@@ -51,10 +54,16 @@ public class BatchService {
                         .add(YogiyoHeader.CONTENTTYPE.getHeader(), "application/x-www-form-urlencoded")
                         .build()
                 , null, HttpMethods.GET);
-        TotalRestaurantResponse result = new Moshi.Builder()
-                .build()
-                .adapter(TotalRestaurantResponse.class)
-                .fromJson(response.body().source());
+        try {
+            result = new Moshi.Builder()
+                    .build()
+                    .adapter(TotalRestaurantResponse.class)
+                    .fromJson(response.body().source());
+        }
+        catch (IOException e) {
+            throw new JsonParseException(e);
+        }
+
         response.body().close();
         return result;
     };
