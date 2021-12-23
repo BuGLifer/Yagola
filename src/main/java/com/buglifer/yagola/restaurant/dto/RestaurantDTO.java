@@ -1,5 +1,6 @@
 package com.buglifer.yagola.restaurant.dto;
 
+import com.buglifer.yagola.common.batch.response.yogiyo.RestaurantResponse;
 import com.buglifer.yagola.common.domain.RestaurantEntity;
 import com.buglifer.yagola.common.dto.CommonDTO;
 import com.buglifer.yagola.common.enums.restaurant.Category;
@@ -8,6 +9,7 @@ import com.buglifer.yagola.order.dto.OrderDTO;
 import lombok.*;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @ToString
@@ -25,6 +27,22 @@ public class RestaurantDTO extends CommonDTO {
     private Date endTime;
     private List<OrderDTO> orders;
     private List<MenuDTO> menus;
+
+    public void setOrder(OrderDTO orderDTO) {
+        if(this.orders.isEmpty()) {
+            orders = new LinkedList<>();
+        }
+        orders.add(orderDTO);
+    }
+
+    private void addCategoryInYogiyoResponse(String[] categories) {
+        if(categories.length == 0) return;
+        Arrays.stream(Category.values())
+                .filter(
+                        e -> Arrays.stream(categories).anyMatch(Predicate.isEqual(e.getName()))
+                )
+                .forEach(category::add);
+    }
 
     @Builder(
             builderClassName = "entity"
@@ -70,7 +88,7 @@ public class RestaurantDTO extends CommonDTO {
         this.imgLink = imgLink;
         this.category = category;
     }
-  
+
     @Builder(
             builderClassName = "init"
             , builderMethodName = "initRestaurant"
@@ -79,10 +97,16 @@ public class RestaurantDTO extends CommonDTO {
         setSeq(seq);
     }
 
-    public void setOrder(OrderDTO orderDTO) {
-        if(this.orders.isEmpty()) {
-            orders = new LinkedList<>();
-        }
-        orders.add(orderDTO);
+    @Builder(
+            builderClassName = "api"
+            , builderMethodName = "fromResponse"
+    )
+    private RestaurantDTO(RestaurantResponse response) {
+        apiID = Long.toString(response.getId());
+        name = response.getName();
+        imgLink = response.getLogo_url();
+        category = EnumSet.noneOf(Category.class);
+        if(response.getCategories().length != 0) addCategoryInYogiyoResponse(response.getCategories());
     }
+
 }

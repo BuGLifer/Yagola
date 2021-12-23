@@ -7,6 +7,7 @@ import com.buglifer.yagola.common.batch.service.BatchService;
 import com.buglifer.yagola.common.okhttp.HttpMethods;
 import com.buglifer.yagola.common.okhttp.OKHttp;
 import com.buglifer.yagola.common.okhttp.header.YogiyoHeader;
+import com.buglifer.yagola.restaurant.dto.RestaurantDTO;
 import com.squareup.moshi.Moshi;
 import com.squareup.moshi.Types;
 import lombok.RequiredArgsConstructor;
@@ -35,4 +36,8 @@ public class BatchTest {
       return batchService.getYogiyoTotalRestaurant();
     };
 
+    @GetMapping("restaurants/list")
+    public List<RestaurantDTO> getRestaurantDTOList() throws IOException {
+        return batchService.getRestaurantDTOByYogiyoResponse();
+    };
 }

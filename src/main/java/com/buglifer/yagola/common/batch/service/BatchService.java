@@ -2,6 +2,7 @@ package com.buglifer.yagola.common.batch.service;
 
 import com.buglifer.yagola.common.batch.enums.yogiyo.YogiyoAPI;
 import com.buglifer.yagola.common.batch.response.yogiyo.MenuTypeResponse;
+import com.buglifer.yagola.common.batch.response.yogiyo.RestaurantResponse;
 import com.buglifer.yagola.common.batch.response.yogiyo.TotalRestaurantResponse;
 import com.buglifer.yagola.common.domain.RestaurantEntity;
 import com.buglifer.yagola.common.okhttp.HttpMethods;
@@ -22,6 +23,7 @@ import org.springframework.web.client.HttpServerErrorException;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,6 +69,18 @@ public class BatchService {
         response.body().close();
         return result;
     };
+
+    public List<RestaurantDTO> getRestaurantDTOByYogiyoResponse() {
+        TotalRestaurantResponse totalRestaurantResponse = requestTotalRestaurant(0);
+        RestaurantResponse[] restaurantResponses = totalRestaurantResponse.getRestaurants();
+        return Arrays.stream(restaurantResponses)
+                .map(
+                        e -> RestaurantDTO.fromResponse()
+                                .response(e)
+                                .build()
+                )
+                .collect(Collectors.toList());
+    }
 
     private String requestMenuView(long restaurantID) throws IOException {
         String url = "https://www.yogiyo.co.kr/api/v1/restaurants/" + restaurantID + "/menu/?add_photo_menu=android&add_one_dish_menu=true&additional_discount_per_menu=true&order_serving_type=delivery";
