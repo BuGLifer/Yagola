@@ -47,12 +47,31 @@ public class OrderDTO extends CommonDTO {
         offlineTime = entity.getOfflineTime();
         orderTime = entity.getOrderTime();
         arrivalTime = entity.getArrivalTime();
-        RestaurantEntity restaurantEntity = entity.getRestaurant();
-        if(entity.getRestaurant() != null) {
+        if (entity.getRestaurant() != null) {
             restaurant = RestaurantDTO
-                    .initRestaurant()
-                    .seq(entity.getRestaurant().getSeq())
+                          .initRestaurant()
+                          .seq(entity.getRestaurant().getSeq())
+                          .build();
+        }
+        if (entity.getUser() != null) {
+            user = UserDTO
+                    .initUser()
+                    .seq(entity.getUser().getSeq())
                     .build();
         }
+    }
+
+    @Builder(
+            builderClassName = "delete"
+            , builderMethodName = "forDelete"
+    )
+    private OrderDTO(long seq, UserDTO userDTO) {
+        setSeq(seq);
+        setUser(
+                UserDTO
+                .initUser()
+                .seq(userDTO.getSeq())
+                .build()
+        );
     }
 }

@@ -1,13 +1,12 @@
 package com.buglifer.yagola.common.domain;
 
+import com.buglifer.yagola.order.dto.UserOrderDTO;
 import lombok.*;
 
 import javax.persistence.*;
 
-@Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true, of = "seq")
 @Table(name = "TB_USER_ORDER")
 @Entity
@@ -56,5 +55,38 @@ public class UserOrderEntity extends CommonEntity {
         if(!menu.getUserOrders().contains(this)) {
             menu.getUserOrders().add(this);
         }
+    }
+
+    @Builder(
+            builderClassName = "dto"
+            , builderMethodName = "fromDTO"
+    )
+    private UserOrderEntity(UserOrderDTO dto) {
+        seq = dto.getSeq();
+        host = dto.getHost();
+        if (dto.getUser() != null) {
+            user = UserEntity
+                    .initUser()
+                    .seq(dto.getUser().getSeq())
+                    .build();
+        }
+        if (dto.getOrder() != null) {
+            order = OrderEntity
+                     .initOrder()
+                     .seq(dto.getOrder().getSeq())
+                     .build();
+        }
+        if (dto.getMenu() != null) {
+            menu = MenuEntity
+                    .fromDTO()
+                    .dto(dto.getMenu())
+                    .build();
+        }
+//        if (dto.getReview() != null) {
+//            review = ReviewEntity
+//                      .initReview()
+//                      .seq(dto.getReview().getSeq())
+//                      .build();
+//        }
     }
 }

@@ -26,14 +26,16 @@ public class MenuDTO extends CommonDTO {
         setName(entity.getName());
         setPrice(entity.getPrice());
         setImgLink(entity.getImgLink());
-        restaurant = RestaurantDTO
-                .initRestaurant()
-                .seq(entity.getRestaurant().getSeq())
-                .build();
+        if (entity.getRestaurant() != null) {
+            restaurant = RestaurantDTO
+                    .initRestaurant()
+                    .seq(entity.getRestaurant().getSeq())
+                    .build();
+        }
     }
 
     @Builder(
-            builderClassName = "initMenu"
+            builderClassName = "init"
             , builderMethodName = "initMenu"
     )
     private MenuDTO(long seq) { setSeq(seq); }

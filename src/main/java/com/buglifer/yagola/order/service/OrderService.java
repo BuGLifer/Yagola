@@ -1,10 +1,12 @@
 package com.buglifer.yagola.order.service;
 
-import com.buglifer.yagola.common.domain.MenuEntity;
 import com.buglifer.yagola.common.domain.OrderEntity;
+import com.buglifer.yagola.common.domain.UserOrderEntity;
+import com.buglifer.yagola.order.dto.UserOrderDTO;
 import com.buglifer.yagola.common.enums.order.Status;
 import com.buglifer.yagola.order.dto.OrderDTO;
 import com.buglifer.yagola.order.repository.OrderRepository;
+import com.buglifer.yagola.order.repository.UserOrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ import java.util.Optional;
 public class OrderService {
 
     private final OrderRepository orderRepository;
+    private final UserOrderRepository userOrderRepository;
 
     public OrderDTO findOrderBySeq(long seq) {
         Optional<OrderEntity> optionalOrderEntity = orderRepository.findById(seq);
@@ -32,7 +35,7 @@ public class OrderService {
     public OrderDTO saveOrder(OrderDTO orderDTO) {
         orderDTO.setStatus(Status.ONLINE);
         OrderEntity orderEntity = OrderEntity
-                .initOrder()
+                .fromDTO()
                 .dto(orderDTO)
                 .build();
         return OrderDTO
@@ -41,18 +44,19 @@ public class OrderService {
                 .build();
     }
 
-    public void removeOrder(long seq) {
-        Optional<OrderEntity> menuEntity = orderRepository.findById(seq);
-        if (!menuEntity.isPresent()) throw new EntityNotFoundException("해당 주문이 존재하지 않습니다.");
-        orderRepository.delete(menuEntity.get());
+    public void removeOrder(OrderDTO orderDTO) {
+        Optional<OrderEntity> optionalOrderEntity = orderRepository.findById(orderDTO.getSeq());
+        if (!optionalOrderEntity.isPresent()) throw new EntityNotFoundException("해당 주문이 존재하지 않습니다.");
+        if (optionalOrderEntity.get().getUser().getSeq() != orderDTO.getUser().getSeq()) throw new SecurityException("주문 생성자만 삭제 가능합니다.");
+        orderRepository.delete(optionalOrderEntity.get());
     }
 
     public OrderDTO modifyOrder(OrderDTO orderDTO) {
-        // 1안 (seq로 한번 find한 후 변경해서 다시 저장)
         OrderDTO copyOrderDTO = OrderDTO
                                 .fromEntity()
                                 .entity(orderRepository.findById(orderDTO.getSeq()).get())
                                 .build();
+        if (copyOrderDTO.getUser().getSeq() != orderDTO.getUser().getSeq()) throw new SecurityException("주문 생성자만 수정가능 합니다.");
         switch (orderDTO.getStatus().name()) {
             case "OFFLINE":
                 copyOrderDTO.setOfflineTime(new Date());
@@ -65,14 +69,25 @@ public class OrderService {
                 break;
         }
         copyOrderDTO.setStatus(orderDTO.getStatus());
-        // 2안 (OrderEntity에 @DynamicUpdate 적용) - 오버헤드 발생 할 수 있음
         OrderEntity orderEntity = OrderEntity
-                .initOrder()
+                .fromDTO()
                 .dto(copyOrderDTO)
                 .build();
         return OrderDTO
                 .fromEntity()
                 .entity(orderRepository.save(orderEntity))
+                .build();
+    }
+
+    public UserOrderDTO joinOrder(UserOrderDTO userOrderDTO) {
+        if (userOrderDTO.getOrder().getUser().getSeq() == userOrderDTO.getUser().getSeq()) userOrderDTO.setHost(true);
+        UserOrderEntity userOrderEntity = UserOrderEntity
+                                            .fromDTO()
+                                            .dto(userOrderDTO)
+                                            .build();
+        return UserOrderDTO
+                .fromEntity()
+                .entity(userOrderRepository.save(userOrderEntity))
                 .build();
     }
 }

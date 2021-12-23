@@ -46,7 +46,7 @@ public class MenuService {
 
     public MenuDTO saveMenu(MenuDTO menuDTO) {
         MenuEntity menuEntity = MenuEntity
-                .initMenu()
+                .fromDTO()
                 .dto(menuDTO)
                 .build();
         return MenuDTO

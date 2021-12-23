@@ -44,6 +44,11 @@ public class OrderEntity extends CommonEntity {
     @JoinColumn(name = "R_SEQ")
     private RestaurantEntity restaurant;
 
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "U_SEQ")
+    private UserEntity user;
+
     @OneToMany(mappedBy = "order")
     private List<CommentEntity> comments;
 
@@ -75,16 +80,16 @@ public class OrderEntity extends CommonEntity {
     }
 
     @Builder(
-            builderClassName = "initSeq"
-            , builderMethodName = "initOrderSeq"
+            builderClassName = "init"
+            , builderMethodName = "initOrder"
     )
     public OrderEntity(long seq) {
         this.seq = seq;
     }
 
     @Builder(
-            builderClassName = "init"
-            , builderMethodName = "initOrder"
+            builderClassName = "dto"
+            , builderMethodName = "fromDTO"
     )
     public OrderEntity(OrderDTO dto) {
         seq = dto.getSeq();
@@ -96,6 +101,12 @@ public class OrderEntity extends CommonEntity {
             restaurant = RestaurantEntity
                     .initRestSeq()
                     .seq(dto.getRestaurant().getSeq())
+                    .build();
+        }
+        if (dto.getUser() != null) {
+            user = UserEntity
+                    .initUser()
+                    .seq(dto.getUser().getSeq())
                     .build();
         }
     }

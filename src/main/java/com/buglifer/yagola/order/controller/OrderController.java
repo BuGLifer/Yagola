@@ -1,7 +1,9 @@
 package com.buglifer.yagola.order.controller;
 
 import com.buglifer.yagola.order.dto.OrderDTO;
+import com.buglifer.yagola.order.dto.UserOrderDTO;
 import com.buglifer.yagola.order.service.OrderService;
+import com.buglifer.yagola.user.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,11 +29,16 @@ public class OrderController {
 
     // 주문 삭제
     @DeleteMapping("{seq}")
-    public ResponseEntity deleteOrder(@PathVariable(name = "seq") long seq) {
-        orderService.removeOrder(seq);
+    public ResponseEntity deleteOrder(@PathVariable(name = "seq") long seq, @RequestBody UserDTO userDTO) {
+        orderService.removeOrder(
+                OrderDTO
+                        .forDelete()
+                        .seq(seq)
+                        .userDTO(userDTO)
+                        .build()
+        );
         return ResponseEntity.noContent().build();
     }
-
 
     // 주문 상태 수정
     @PatchMapping("{seq}")
@@ -40,8 +47,9 @@ public class OrderController {
     }
 
     // order-seq 주문 참여 생성
-//    @PostMapping
-//    public ResponseEntity<Object> postJoinOrder() {
-//        return
-//    }
+    @PostMapping("{seq}")
+    public ResponseEntity<UserOrderDTO> postJoinOrder(@PathVariable(name = "seq") long seq, @RequestBody UserOrderDTO userOrderDTO) {
+        userOrderDTO.getOrder().setSeq(seq);
+        return ResponseEntity.ok().body(orderService.joinOrder(userOrderDTO));
+    }
 }
