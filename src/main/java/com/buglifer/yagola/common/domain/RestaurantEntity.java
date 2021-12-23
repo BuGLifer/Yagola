@@ -5,13 +5,11 @@ import com.buglifer.yagola.common.enums.restaurant.SetCategoryConverter;
 import com.buglifer.yagola.restaurant.dto.RestaurantDTO;
 import lombok.*;
 import org.hibernate.annotations.CollectionType;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
-import java.util.Arrays;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @NoArgsConstructor
@@ -40,6 +38,14 @@ public class RestaurantEntity extends CommonEntity {
     @Convert(converter = SetCategoryConverter.class)
     @Column(name = "CATEGORY")
     private EnumSet<Category> category;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "START_TIME")
+    private Date startTime;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "END_TIME")
+    private Date endTime;
 
     @OneToMany(mappedBy = "restaurant")
     private List<OrderEntity> orders;

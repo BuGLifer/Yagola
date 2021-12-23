@@ -8,8 +8,9 @@
 | 1.1.0 |                         Spring Batch 관련 테이블 추가                          |
 | 1.1.1 | Menu Table Description 컬럼 추가, <br/>Resturant Table Category Enum > Set 타입 변경 |
 |1.1.2| UserOrder Table M_SEQ, RV_SEQ null 허용 변경|
+|1.1.3| Restaurant 운영, 종료시간 컬럼 추가|
 # DDL
-## 1.1.2
+## 1.1.3
 ```mysql
 CREATE TABLE BATCH_JOB_INSTANCE  (
 JOB_INSTANCE_ID BIGINT  NOT NULL PRIMARY KEY ,
@@ -155,15 +156,17 @@ CONSTRAINT `FK_TB_RESTAURANT_TO_TB_ORDER_1` FOREIGN KEY (`R_SEQ`) REFERENCES `tb
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `tb_restaurant` (
-`R_SEQ` mediumint(9) unsigned NOT NULL AUTO_INCREMENT COMMENT '식당 SEQ',
-`NAME` varchar(100) DEFAULT NULL COMMENT '식당 이름',
-`API_ID` varchar(100) DEFAULT NULL COMMENT '요기요 API 식당 식별 ID',
-`TEL` varchar(100) DEFAULT NULL COMMENT '식당 전화번호',
-`IMG_LINK` varchar(512) DEFAULT NULL COMMENT '요기요 이미지 Link 주소',
-`CATEGORY` set('CHINA','KOREA','JAPAN','ALONE','FRANCHISE','WESTERN','PIG','NIGHT','SCHOOL','CAFE','MART','CHICKEN','ETC') DEFAULT 'ETC' COMMENT '식당 카테고리\r\nCHINA : 중식\r\nKOREA : 한식\r\nJAPAN : 일식/돈까스\r\nALONE : 1인분\r\nFRANCHISE : 프랜차이즈\r\nWESTERN : 피자/양식\r\nPIG : 족발/보쌈\r\nNIGHT : 야식\r\nSCHOOL : 분식\r\nCAFE : 카페/디저트\r\nMART : 편의점/마트\r\n CHICKEN: 치킨 ETC : 기타, 없음',
-`CREATED_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '생성 일자',
-PRIMARY KEY (`R_SEQ`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+ `R_SEQ` mediumint(9) unsigned NOT NULL AUTO_INCREMENT COMMENT '식당 SEQ',
+ `NAME` varchar(100) DEFAULT NULL COMMENT '식당 이름',
+ `API_ID` varchar(100) DEFAULT NULL COMMENT '요기요 API 식당 식별 ID',
+ `TEL` varchar(100) DEFAULT NULL COMMENT '식당 전화번호',
+ `IMG_LINK` varchar(512) DEFAULT NULL COMMENT '요기요 이미지 Link 주소',
+ `CATEGORY` set('CHINA','KOREA','JAPAN','ALONE','FRANCHISE','WESTERN','PIG','NIGHT','SCHOOL','CAFE','MART','CHICKEN','ETC') DEFAULT 'ETC' COMMENT '식당 카테고리\r\nCHINA : 중식\r\nKOREA : 한식\r\nJAPAN : 일식/돈까스\r\nALONE : 1인분\r\nFRANCHISE : 프랜차이즈\r\nWESTERN : 피자/양식\r\nPIG : 족발/보쌈\r\nNIGHT : 야식\r\nSCHOOL : 분식\r\nCAFE : 카페/디저트\r\nMART : 편의점/마트\r\n CHICKEN: 치킨 ETC : 기타, 없음',
+ `CREATED_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '생성 일자',
+ `START_TIME` timestamp NULL DEFAULT NULL COMMENT '오픈 시각',
+ `END_TIME` timestamp NULL DEFAULT NULL COMMENT '종료 시각',
+ PRIMARY KEY (`R_SEQ`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `tb_review` (
 `RV_SEQ` mediumint(9) unsigned NOT NULL AUTO_INCREMENT COMMENT '후기 SEQ',

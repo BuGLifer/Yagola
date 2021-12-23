@@ -7,10 +7,7 @@ import com.buglifer.yagola.menu.dto.MenuDTO;
 import com.buglifer.yagola.order.dto.OrderDTO;
 import lombok.*;
 
-import java.util.EnumSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @ToString
@@ -24,6 +21,8 @@ public class RestaurantDTO extends CommonDTO {
     private String tel;
     private String imgLink;
     private EnumSet<Category> category;
+    private Date startTime;
+    private Date endTime;
     private List<OrderDTO> orders;
     private List<MenuDTO> menus;
 
@@ -42,6 +41,8 @@ public class RestaurantDTO extends CommonDTO {
         tel = entity.getTel();
         imgLink = entity.getImgLink();
         category = entity.getCategory();
+        startTime = entity.getStartTime();
+        endTime = entity.getEndTime();
         if(entity.getOrders() != null) {
             orders = entity.getOrders().stream().map(
                     e -> OrderDTO
