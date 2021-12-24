@@ -6,12 +6,18 @@ import com.buglifer.yagola.common.dto.CommonDTO;
 import com.buglifer.yagola.common.enums.restaurant.Category;
 import com.buglifer.yagola.menu.dto.MenuDTO;
 import com.buglifer.yagola.order.dto.OrderDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+@Slf4j
 @ToString
 @Getter
 @Setter
@@ -23,8 +29,8 @@ public class RestaurantDTO extends CommonDTO {
     private String tel;
     private String imgLink;
     private EnumSet<Category> category;
-    private Date startTime;
-    private Date endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private List<OrderDTO> orders;
     private List<MenuDTO> menus;
 
@@ -59,8 +65,8 @@ public class RestaurantDTO extends CommonDTO {
         tel = entity.getTel();
         imgLink = entity.getImgLink();
         category = entity.getCategory();
-        startTime = entity.getStartTime();
-        endTime = entity.getEndTime();
+        //startTime = entity.getStartTime();
+        //endTime = entity.getEndTime();
         if(entity.getOrders() != null) {
             orders = entity.getOrders().stream().map(
                     e -> OrderDTO
@@ -107,6 +113,9 @@ public class RestaurantDTO extends CommonDTO {
         imgLink = response.getLogo_url();
         category = EnumSet.noneOf(Category.class);
         if(response.getCategories().length != 0) addCategoryInYogiyoResponse(response.getCategories());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        if(response.getBegin() != null) startTime = LocalTime.parse(response.getBegin());
+        if(response.getEnd() != null) endTime = LocalTime.parse(response.getEnd());
     }
 
 }

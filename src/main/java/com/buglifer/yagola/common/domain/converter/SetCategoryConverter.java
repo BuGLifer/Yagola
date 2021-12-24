@@ -1,5 +1,6 @@
-package com.buglifer.yagola.common.enums.restaurant;
+package com.buglifer.yagola.common.domain.converter;
 
+import com.buglifer.yagola.common.enums.restaurant.Category;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 

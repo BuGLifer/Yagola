@@ -1,14 +1,12 @@
 package com.buglifer.yagola.common.domain;
 
 import com.buglifer.yagola.common.enums.restaurant.Category;
-import com.buglifer.yagola.common.enums.restaurant.SetCategoryConverter;
+import com.buglifer.yagola.common.domain.converter.SetCategoryConverter;
 import com.buglifer.yagola.restaurant.dto.RestaurantDTO;
 import lombok.*;
-import org.hibernate.annotations.CollectionType;
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 import java.util.*;
 
 @Getter
@@ -39,13 +37,11 @@ public class RestaurantEntity extends CommonEntity {
     @Column(name = "CATEGORY")
     private EnumSet<Category> category;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "START_TIME")
-    private Date startTime;
+    private LocalTime startTime;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "END_TIME")
-    private Date endTime;
+    private LocalTime endTime;
 
     @OneToMany(mappedBy = "restaurant")
     private List<OrderEntity> orders;
@@ -78,6 +74,8 @@ public class RestaurantEntity extends CommonEntity {
         tel = dto.getTel();
         imgLink = dto.getImgLink();
         category = dto.getCategory();
+        startTime = dto.getStartTime();
+        endTime = dto.getEndTime();
     }
 
     @Builder(

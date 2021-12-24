@@ -73,13 +73,22 @@ public class BatchService {
     public List<RestaurantDTO> getRestaurantDTOByYogiyoResponse() {
         TotalRestaurantResponse totalRestaurantResponse = requestTotalRestaurant(0);
         RestaurantResponse[] restaurantResponses = totalRestaurantResponse.getRestaurants();
-        return Arrays.stream(restaurantResponses)
+
+        List<RestaurantDTO> result = Arrays.stream(restaurantResponses)
                 .map(
                         e -> RestaurantDTO.fromResponse()
                                 .response(e)
                                 .build()
                 )
                 .collect(Collectors.toList());
+
+        restaurantRepository.save(RestaurantEntity
+                .initRestaurant()
+                .dto(result.get(0))
+                .build()
+        );
+
+        return result;
     }
 
     private String requestMenuView(long restaurantID) throws IOException {
