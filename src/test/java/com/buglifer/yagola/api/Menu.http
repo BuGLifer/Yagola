@@ -9,11 +9,11 @@ POST http://localhost/menu
 Content-Type: application/json
 
 {
-  "name": "김치찌개",
-  "price": 9500,
-  "imgLink": "kimchi_temp",
+  "name": "순두부찌개",
+  "price": 8900,
+  "imgLink": "https://images.yogiyo.co.kr/image/yogiyo/REST_OWNER_IMG/OWNERS/566021/20210621_143630_blob?width=384&height=273&quality=100",
   "restaurant": {
-    "seq": 1
+    "seq": 2
   }
 }
 

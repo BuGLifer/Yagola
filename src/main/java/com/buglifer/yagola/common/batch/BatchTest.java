@@ -62,12 +62,13 @@ public class BatchTest {
                 , null, HttpMethods.GET);
         if(!response.isSuccessful()) log.info("실패!!!!!");
         Type type = Types.newParameterizedType(List.class, MenuTypeResponse.class);
+        StringBuilder stringBuilder = new StringBuilder();
         List<MenuTypeResponse> result = (List<MenuTypeResponse>) new Moshi.Builder()
                 .build()
                 .adapter(type)
                 .fromJson(response.body().source());
         response.body().close();
-        result.forEach( e -> log.info(e.toString()));
-        return "success";
+        result.forEach( e -> stringBuilder.append(e.toString()));
+        return stringBuilder.toString();
     }
 }

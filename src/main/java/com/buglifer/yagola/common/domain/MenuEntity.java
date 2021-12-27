@@ -21,6 +21,9 @@ public class MenuEntity extends CommonEntity {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "DESCRIPTION")
+    private String description;
+
     @Column(name = "PRICE")
     private long price;
 

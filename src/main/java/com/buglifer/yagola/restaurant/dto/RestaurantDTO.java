@@ -7,8 +7,10 @@ import com.buglifer.yagola.menu.dto.MenuDTO;
 import com.buglifer.yagola.order.dto.OrderDTO;
 import lombok.*;
 
+import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @ToString
@@ -21,7 +23,7 @@ public class RestaurantDTO extends CommonDTO {
     private String apiID;
     private String tel;
     private String imgLink;
-    private Category category;
+    private EnumSet<Category> category;
     private List<OrderDTO> orders;
     private List<MenuDTO> menus;
 
@@ -40,22 +42,26 @@ public class RestaurantDTO extends CommonDTO {
         tel = entity.getTel();
         imgLink = entity.getImgLink();
         category = entity.getCategory();
-        orders = entity.getOrders().stream().map(
-                e -> OrderDTO
-                    .fromEntity()
-                    .entity(e)
-                    .build()
-        ).collect(Collectors.toList());
-        menus = entity.getMenus().stream().map(
-                e -> MenuDTO
-                    .fromEntity()
-                    .entity(e)
-                    .build()
-        ).collect(Collectors.toList());
+        if(entity.getOrders() != null) {
+            orders = entity.getOrders().stream().map(
+                    e -> OrderDTO
+                            .fromEntity()
+                            .entity(e)
+                            .build()
+            ).collect(Collectors.toList());
+        }
+        if(entity.getMenus() != null) {
+            menus = entity.getMenus().stream().map(
+                    e -> MenuDTO
+                            .fromEntity()
+                            .entity(e)
+                            .build()
+            ).collect(Collectors.toList());
+        }
     }
 
     @Builder
-    public RestaurantDTO(long seq, String name, String apiID, String tel, String imgLink, Category category) {
+    public RestaurantDTO(long seq, String name, String apiID, String tel, String imgLink, EnumSet<Category> category) {
         setSeq(seq);
         this.name = name;
         this.apiID = apiID;

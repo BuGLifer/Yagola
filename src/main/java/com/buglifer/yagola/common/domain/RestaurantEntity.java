@@ -1,11 +1,17 @@
 package com.buglifer.yagola.common.domain;
 
 import com.buglifer.yagola.common.enums.restaurant.Category;
+import com.buglifer.yagola.common.enums.restaurant.SetCategoryConverter;
 import com.buglifer.yagola.restaurant.dto.RestaurantDTO;
 import lombok.*;
+import org.hibernate.annotations.CollectionType;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
+import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @NoArgsConstructor
@@ -31,9 +37,9 @@ public class RestaurantEntity extends CommonEntity {
     @Column(name = "IMG_LINK")
     private String imgLink;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = SetCategoryConverter.class)
     @Column(name = "CATEGORY")
-    private Category category;
+    private EnumSet<Category> category;
 
     @OneToMany(mappedBy = "restaurant")
     private List<OrderEntity> orders;
@@ -73,4 +79,5 @@ public class RestaurantEntity extends CommonEntity {
             , builderMethodName = "initRestSeq"
     )
     public RestaurantEntity(long seq) { this.seq = seq; }
+
 }

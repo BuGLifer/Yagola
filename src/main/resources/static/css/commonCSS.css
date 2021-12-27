@@ -41,6 +41,9 @@
 .fs6vw {
     font-size: 6vw;
 }
+.fwb {
+    font-weight: bold;
+}
 
 /*
     색상 관련
@@ -291,4 +294,33 @@
 .selected {
     border-radius: 5px;
     border: 3px solid #2195e1;
+}
+
+/*
+    main 영역
+ */
+
+.slide-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    height: 200px;
+    overflow:hidden;
+}
+.slides {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+.slides li {
+    display: inline-block;
+    text-align: center;
+}
+.slides li a {
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+.slides li img {
+    width: 100%;
 }
