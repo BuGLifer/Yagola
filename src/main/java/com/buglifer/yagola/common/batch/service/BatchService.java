@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -118,5 +119,12 @@ public class BatchService {
         List<RestaurantDTO> dbList = getRestaurants();
         apiList.forEach(e -> log.info("[API]" + e.getApiID() + ", " + e.getName()));
         dbList.forEach(e -> log.info("[DB]" + e.getApiID() + ", " + e.getName()));
+        log.info("[MatchingTest] Start");
+        apiList.stream()
+                .filter(
+                        e -> dbList.stream().map(a -> a.getApiID()).noneMatch(Predicate.isEqual(e.getApiID()))
+                ).forEach(
+                        e -> log.info("[Not Matched]" + e.getApiID() + ", " + e.getName()));
+        log.info("[MatchingTest] End");
     }
 }
