@@ -45,4 +45,9 @@ public class BatchTest {
     public void getRestaurantsCompare() {
         batchService.compareRestuaurantAPIWithDB();
     }
+
+    @GetMapping("restaurants/pagination")
+    public void getResturantsPagination() {
+        batchService.logMaxPagination();
+    }
 }

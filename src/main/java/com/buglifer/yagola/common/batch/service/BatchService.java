@@ -127,4 +127,18 @@ public class BatchService {
                         e -> log.info("[Not Matched]" + e.getApiID() + ", " + e.getName()));
         log.info("[MatchingTest] End");
     }
+
+    public void logMaxPagination() {
+        TotalRestaurantResponse initResponse = requestTotalRestaurant(0);
+        long totalPage = initResponse.getPagination().getTotal_pages();
+        long currentPage = initResponse.getPagination().getCurrent_page();
+        log.info("[MAX Pagination] " + initResponse.getPagination().getTotal_pages());
+        log.info("[Current Page] " + initResponse.getPagination().getCurrent_page());
+        if(totalPage == currentPage) return;
+        while(totalPage >= currentPage) {
+            log.info("[ " + currentPage + " ]");
+
+            currentPage++;
+        }
+    }
 }
