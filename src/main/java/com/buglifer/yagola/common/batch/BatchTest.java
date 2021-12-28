@@ -40,4 +40,9 @@ public class BatchTest {
     public List<RestaurantDTO> getRestaurantDTOList() throws IOException {
         return batchService.getRestaurantDTOByYogiyoResponse();
     }
+
+    @GetMapping("restaurants/compare")
+    public void getRestaurantsCompare() {
+        batchService.compareRestuaurantAPIWithDB();
+    }
 }

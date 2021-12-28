@@ -82,11 +82,11 @@ public class BatchService {
                 )
                 .collect(Collectors.toList());
 
-        restaurantRepository.save(RestaurantEntity
-                .initRestaurant()
-                .dto(result.get(0))
-                .build()
-        );
+//        restaurantRepository.save(RestaurantEntity
+//                .initRestaurant()
+//                .dto(result.get(0))
+//                .build()
+//        );
 
         return result;
     }
@@ -111,5 +111,12 @@ public class BatchService {
         response.body().close();
         result.forEach( e -> stringBuilder.append(e.toString()));
         return stringBuilder.toString();
+    }
+
+    public void compareRestuaurantAPIWithDB() {
+        List<RestaurantDTO> apiList = getRestaurantDTOByYogiyoResponse();
+        List<RestaurantDTO> dbList = getRestaurants();
+        apiList.forEach(e -> log.info("[API]" + e.getApiID() + ", " + e.getName()));
+        dbList.forEach(e -> log.info("[DB]" + e.getApiID() + ", " + e.getName()));
     }
 }
