@@ -34,10 +34,10 @@ public class BatchTest {
     @GetMapping("restaurants")
     public TotalRestaurantResponse getRestaurants() throws IOException {
       return batchService.getYogiyoTotalRestaurant();
-    };
+    }
 
     @GetMapping("restaurants/list")
     public List<RestaurantDTO> getRestaurantDTOList() throws IOException {
         return batchService.getRestaurantDTOByYogiyoResponse();
-    };
+    }
 }
