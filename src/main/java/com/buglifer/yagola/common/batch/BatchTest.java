@@ -38,7 +38,7 @@ public class BatchTest {
 
     @GetMapping("restaurants/list")
     public List<RestaurantDTO> getRestaurantDTOList() throws IOException {
-        return batchService.getRestaurantDTOByYogiyoResponse();
+        return null;
     }
 
     @GetMapping("restaurants/compare")

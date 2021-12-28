@@ -23,6 +23,7 @@ import org.springframework.web.client.HttpServerErrorException;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
@@ -47,9 +48,10 @@ public class BatchService {
         return requestTotalRestaurant(0);
     }
 
-    private TotalRestaurantResponse requestTotalRestaurant(int page) {
+    private TotalRestaurantResponse requestTotalRestaurant(long page) {
         TotalRestaurantResponse result = null;
-        Response response = OKHttp.okHttpRequest(YogiyoAPI.TOTAL_RESTAURANT.getUrl()
+        String url = YogiyoAPI.TOTAL_RESTAURANT.getUrl() + "page=" + page;
+        Response response = OKHttp.okHttpRequest(url
                 , new Headers
                         .Builder()
                         .add(YogiyoHeader.APISECRET.getHeader(), "fe5183cc3dea12bd0ce299cf110a75a2")
@@ -71,8 +73,7 @@ public class BatchService {
         return result;
     };
 
-    public List<RestaurantDTO> getRestaurantDTOByYogiyoResponse() {
-        TotalRestaurantResponse totalRestaurantResponse = requestTotalRestaurant(0);
+    public List<RestaurantDTO> getRestaurantDTOByYogiyoResponse(TotalRestaurantResponse totalRestaurantResponse) {
         RestaurantResponse[] restaurantResponses = totalRestaurantResponse.getRestaurants();
 
         List<RestaurantDTO> result = Arrays.stream(restaurantResponses)
@@ -115,7 +116,7 @@ public class BatchService {
     }
 
     public void compareRestuaurantAPIWithDB() {
-        List<RestaurantDTO> apiList = getRestaurantDTOByYogiyoResponse();
+        List<RestaurantDTO> apiList = getRestaurantDTOByYogiyoResponse(requestTotalRestaurant(0));
         List<RestaurantDTO> dbList = getRestaurants();
         apiList.forEach(e -> log.info("[API]" + e.getApiID() + ", " + e.getName()));
         dbList.forEach(e -> log.info("[DB]" + e.getApiID() + ", " + e.getName()));
@@ -137,7 +138,10 @@ public class BatchService {
         if(totalPage == currentPage) return;
         while(totalPage >= currentPage) {
             log.info("[ " + currentPage + " ]");
-
+            List<RestaurantDTO> restaurantDTOListinAPI = getRestaurantDTOByYogiyoResponse(requestTotalRestaurant(currentPage));
+            if(restaurantDTOListinAPI.isEmpty()) break;
+            log.info("[item count]" + restaurantDTOListinAPI.size());
+            log.info(restaurantDTOListinAPI.get(0).getApiID() + ", " + restaurantDTOListinAPI.get(0).getName());
             currentPage++;
         }
     }
