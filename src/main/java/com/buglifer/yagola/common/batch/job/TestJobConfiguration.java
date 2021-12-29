@@ -1,6 +1,7 @@
 package com.buglifer.yagola.common.batch.job;
 
 import com.buglifer.yagola.common.batch.service.BatchService;
+import com.buglifer.yagola.common.domain.RestaurantEntity;
 import com.buglifer.yagola.restaurant.dto.RestaurantDTO;
 import com.buglifer.yagola.restaurant.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -33,7 +37,6 @@ public class TestJobConfiguration {
     }
 
     @Bean
-    @Scheduled(cron = "5 * * * * *")
     public Job testRestaurant() {
         return jobBuilderFactory.get("testRestaurant")
                 .start(testStep3())
@@ -45,6 +48,16 @@ public class TestJobConfiguration {
         return stepBuilderFactory.get("testStep3")
                 .tasklet((contribution, chunkContext) ->{
                     log.info("[TestJob] TestStep 3 !!!!");
+                    long seq = 1;
+                    Optional<RestaurantEntity> optionalEntity = restaurantRepository.findById(seq);
+                    if(!optionalEntity.isEmpty()) {
+                        RestaurantEntity entity = optionalEntity.get();
+                        RestaurantDTO dto = RestaurantDTO.fromEntity().entity(entity).build();
+                        dto.setStartTime(LocalTime.now());
+                        RestaurantEntity testEntity = RestaurantEntity.initRestaurant().dto(dto).build();
+                        restaurantRepository.save(testEntity);
+                    }
+
                     List<RestaurantDTO> restaurantDTOList = batchService.getRestaurants();
                     restaurantDTOList.forEach(
                             e -> log.info("[RestaurantDTO] " + e.toString())
