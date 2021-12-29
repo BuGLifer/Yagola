@@ -19,5 +19,4 @@ public class YogiyoJobConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
     private final BatchService batchService;
 
-
 }
