@@ -6,10 +6,13 @@ import com.buglifer.yagola.restaurant.dto.RestaurantDTO;
 import com.buglifer.yagola.restaurant.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.batch.core.Job;
-import org.springframework.batch.core.Step;
+import org.springframework.batch.core.*;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
+import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
+import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +32,13 @@ public class TestJobConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
     private final BatchService batchService;
     private final RestaurantRepository restaurantRepository;
+    private final JobLauncher jobLauncher;
+
+    @Scheduled(cron = "5 * * * * *")
+    public void testScheduler() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
+        JobParameters jobParameters = new JobParametersBuilder().addDate("time", new Date()).toJobParameters();
+        jobLauncher.run(testRestaurant(), jobParameters);
+    }
 
     public Job testJob() {
         return jobBuilderFactory.get("testJob")
