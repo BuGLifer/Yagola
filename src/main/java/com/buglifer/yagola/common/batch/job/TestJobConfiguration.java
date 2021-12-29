@@ -35,7 +35,7 @@ public class TestJobConfiguration {
     private final JobLauncher jobLauncher;
 
     @Scheduled(cron = "5 * * * * *")
-    public void testScheduler() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
+    public void testScheduler() throws JobExecutionException {
         JobParameters jobParameters = new JobParametersBuilder().addDate("time", new Date()).toJobParameters();
         jobLauncher.run(testRestaurant(), jobParameters);
     }
