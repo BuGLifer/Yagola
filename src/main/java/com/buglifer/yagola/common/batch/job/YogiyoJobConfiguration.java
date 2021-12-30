@@ -19,4 +19,10 @@ public class YogiyoJobConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
     private final BatchService batchService;
 
+//    @Bean
+//    public Job updateRestaurantJob() {
+//        return jobBuilderFactory.get("updateRestaurantJob")
+//                .start()
+//    }
+
 }
