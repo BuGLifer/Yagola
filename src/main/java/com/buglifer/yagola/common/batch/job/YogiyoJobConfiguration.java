@@ -41,4 +41,16 @@ public class YogiyoJobConfiguration {
                 })
                 .build();
     }
+
+    @Bean
+    public Step getRestaurantDTOInDB() {
+        return stepBuilderFactory.get("getRestaurantDTOInDB")
+                .tasklet((contribution, chunkContext) -> {
+                    log.info("[Step] [getRestaurantDTOInDB] Start" );
+
+                    log.info("[Step] [getRestaurantDTOInDB] End");
+                    return RepeatStatus.FINISHED;
+                })
+                .build();
+    }
 }
