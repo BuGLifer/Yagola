@@ -146,5 +146,24 @@ public class BatchService {
         }
     }
 
-    public
+    public List<TotalRestaurantResponse> getTotalRestaurantResponseMaxPagination() throws InterruptedException {
+        TotalRestaurantResponse initResponse = requestTotalRestaurant(0);
+        long totalPage = initResponse.getPagination().getTotal_pages();
+        long currentPage = initResponse.getPagination().getCurrent_page();
+        List<TotalRestaurantResponse> result = new ArrayList<>();
+        result.add(initResponse);
+        while(totalPage > currentPage) {
+            currentPage++;
+            log.info("CurrentPage = "+String.valueOf(currentPage));
+            TotalRestaurantResponse response = requestTotalRestaurant(currentPage);
+            if(response.getRestaurants().length == 0) break;
+            log.info("add in result");
+            result.add(response);
+            log.info("Thread Sleep Start");
+            Thread.sleep(3000);
+            log.info("Thread Sleep End");
+            log.info("result = " + response.getRestaurants()[0].getName());
+        }
+        return result;
+    }
 }

@@ -47,7 +47,7 @@ public class BatchTest {
     }
 
     @GetMapping("restaurants/pagination")
-    public void getResturantsPagination() {
-        batchService.logMaxPagination();
+    public void getResturantsPagination() throws InterruptedException {
+        batchService.getTotalRestaurantResponseMaxPagination();
     }
 }
